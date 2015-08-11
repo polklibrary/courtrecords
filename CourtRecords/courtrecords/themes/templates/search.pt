@@ -14,11 +14,11 @@
         <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/datatables/jquery.dataTables.min.js')}"></script>
         <script>
         
-            var entity = '${entity}';
-            var firstname = '${firstname}';
-            var keywords = '${keywords}';
-            var start_date = '${start_date}';
-            var end_date = '${end_date}';
+            var entity = "${escaped_entity}";
+            var firstname = "${escaped_firstname}";
+            var keywords = "${escaped_keywords}";
+            var start_date = "${start_date}";
+            var end_date = "${end_date}";
             var counties = ${counties};
             var case_types = ${actiontypes};
             var roles = ${roles};

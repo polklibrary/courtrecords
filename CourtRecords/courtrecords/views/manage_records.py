@@ -11,6 +11,38 @@ import transaction, re, datetime
 
 class ManageRecords(ManageData):
 
+
+    @view_config(route_name='manage_records_previous', permission=ACL.EDITOR)
+    def manage_records_previous(self):
+        case_id = int(self.request.params.get('case',''))
+        call_number = int(self.request.params.get('call_number',''))
+        
+        cases = DBSession.query(Cases).filter(Cases.call_number == call_number).order_by('id asc').all()
+        previous = 0
+        for i, case in enumerate(cases):
+            if case.id == case_id:
+                previous = i-1
+                break
+        if previous == -1:
+            previous = len(cases)-1
+        return HTTPFound(location=route_url('manage_records', self.request, case_id=cases[previous].id))
+
+    @view_config(route_name='manage_records_next', permission=ACL.EDITOR)
+    def manage_records_next(self):
+        case_id = int(self.request.params.get('case',''))
+        call_number = int(self.request.params.get('call_number',''))
+        
+        cases = DBSession.query(Cases).filter(Cases.call_number == call_number).order_by('id asc').all()
+        next = 0
+        for i, case in enumerate(cases):
+            if case.id == case_id:
+                next = i+1
+                break
+        if next == len(cases):
+            next = 0
+                                                
+        return HTTPFound(location=route_url('manage_records', self.request, case_id=cases[next].id))
+
     @view_config(route_name='manage_records', renderer='../themes/templates/admin/records.pt', permission=ACL.EDITOR)
     def manage_records(self):
         case_id = self.request.matchdict['case_id']

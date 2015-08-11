@@ -10,7 +10,7 @@ class ManageOrders(BaseView):
 
     @view_config(route_name='manage_orders', renderer='../themes/templates/admin/orders.pt', permission=ACL.EDITOR)
     def manage_orders(self):
-        self.set('invoices',Invoices.loadAll(completed=0, order='created desc'))
+        self.set('invoices',Invoices.loadAll(order='created desc'))
         return self.response
         
         
@@ -35,13 +35,11 @@ class ManageOrder(BaseView):
             
             final_status = Statuses.load(order='priority desc')
             if final_status.id == invoice.status:
-                print "completed!"
                 invoice.completed = True
             
             if Validators.bool(self.request.params.get('invoice.status.emailer',0)):
                 status = Statuses.load(id=invoice.status)
                 orders_data = invoice.get_records_raw()
-                print ">>>>> " + str(orders_data[0]['location'])
                 archive = Archives.load(id=orders_data[0]['location'])
                 
                 Emailer.send(self.request,

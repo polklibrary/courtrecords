@@ -16,8 +16,11 @@ class Search(BaseView):
     
         #names
         self.set('entity', self.request.params.get('entity',''))
+        self.set('escaped_entity', self.request.params.get('entity','').replace('"','\\"').replace("'","\\'"))
         self.set('firstname', self.request.params.get('firstname',''))
+        self.set('escaped_firstname', self.request.params.get('firstname','').replace('"','\\"').replace("'","\\'"))
         self.set('keywords', self.request.params.get('keywords',''))
+        self.set('escaped_keywords', self.request.params.get('keywords','').replace('"','\\"').replace("'","\\'"))
         self.set('mode', self.request.params.get('mode',False))
         
         #dates

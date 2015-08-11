@@ -23,7 +23,7 @@
                     'lengthChange': false,
                     'pageLength': 10,
                     'paging': true,
-                    'order': [[ 0, 'asc' ]]
+                    'order': [[ 3, 'desc' ]]
                 }); 
                 
                 $('#invoice-table tbody tr').each(function(){
