@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  
+    <tal:block metal:define-slot="title">
+        <title>UW Oshkosh Archives - Court Records</title>
+    </tal:block>  
+    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/tinymce.css')}" />
+    <noscript>
+        <style> 
+            .needs-js { display:none; } 
+        </style>
+    </noscript>
+  
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/cookies/jquery_cookies.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/main.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/search.js')}"></script>
+    <script type="text/javascript">
+        var domain = '${request.application_url}';
+    </script>
+    
+    <tal:block metal:define-slot="css" tal:content="nothing">
+       Extendable CSS Slot
+    </tal:block>  
+    <tal:block metal:define-slot="js" tal:content="nothing">
+       Extendable JS Slot
+    </tal:block> 
+  
+</head>
+
+<body>
+
+
+
+    <div id="header">
+    
+        <div id="top_level_navigation">
+            <ul>
+                
+                <li class=" about_uw_oshkoshNav">
+                    <a href="http://www.uwosh.edu/home/about-uw-oshkosh">About UW Oshkosh</a>
+                </li>
+            
+                <li class=" academicsNav">
+                    <a href="http://www.uwosh.edu/home/future-students/undergraduate/academics">Academics</a>
+                </li>
+            
+                <li class=" athleticsNav">
+                    <a href=" http://www.titans.uwosh.edu/">Athletics</a>
+                </li>
+            
+                <li class=" admissionsNav">
+                    <a href=" http://admissions.uwosh.edu/">Admissions</a>
+                </li>
+            
+                <li class=" administrationNav">
+                    <a href="http://www.uwosh.edu/home/administration">Administration</a>
+                </li>
+            
+                <li class=" resourcesNav">
+                    <a href="http://www.uwosh.edu/home/resources">Resources</a>
+                </li>
+            
+                <li class=" calendarsNav">
+                    <a href="http://www.uwosh.edu/home/calendars">Calendars</a>
+                </li>
+
+
+                <li class="titan_servicesNav" id="titanServicesLink">
+                    <a href="http://www.uwosh.edu/home/titan-services-and-campus-resources">Titan Services</a>
+
+                    <div id="titanServicesLinks">
+                        
+                        <ul>
+                        
+                            <li class=" site_indexNav">
+                                <a href=" http://www.uwosh.edu/home/site-index/">Site Index</a>
+                            </li>
+                        
+                        
+                            <li class=" directoryNav">
+                                <a href=" http://www.uwosh.edu/directory/">Directory</a>
+                            </li>
+                        
+                        
+                            <li class=" titan_webNav">
+                                <a href=" http://www.uwosh.edu/registrar/titanweb/">Titan Web</a>
+                            </li>
+                        
+                        
+                            <li class=" titan_filesNav">
+                                <a href=" https://titanfiles.uwosh.edu/xythoswfs/webview/xythoslogin.action">Titan Files</a>
+                            </li>
+                        
+                        
+                            <li class=" TitanAppsNav">
+                                <a href=" http://mail.google.com">Titan Apps (email)</a>
+                            </li>
+                        
+                        
+                            <li class=" uw_system_portalNav">
+                                <a href=" https://my.wisconsin.edu">My UW System</a>
+                            </li>
+                        
+                        
+                            <li class=" d2lNav">
+                                <a href=" http://www.uwosh.edu/d2l/">Desire2Learn (D2L)</a>
+                            </li>
+                        
+                        
+                            <li class=" library_resourcesNav">
+                                <a href=" http://www.uwosh.edu/library/">Polk Library</a>
+                            </li>
+                        
+                        
+                            <li class=" MyUWONav">
+                                <a href=" http://www.uwosh.edu/myuwo/">MyUWO</a>
+                            </li>
+                        
+                        
+                            <li class=" OrgSyncNav">
+                                <a href=" https://uwosh.collegiatelink.net/">Student Clubs &amp; Orgs</a>
+                            </li>
+                        
+                        
+                            <li class=" TitanJobsNav">
+                                <a href=" https://www.myinterfase.com/uwosh/student/">Titan Jobs</a>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                        
+                </li>
+                <li class="clear"></li>
+            </ul>
+        </div>
+    
+        <div class="content">
+            
+            <div style="background-image: url('http://www.uwosh.edu/library/images/header-homepage-banner')" id="library_header_banner_hp">
+                <a class="library_no_underline library_no_border" href="http://www.uwosh.edu/home" id="uwo_logo_hp">
+                    <img src="http://www.uwosh.edu/library/++resource++uwosh.librarytheme.images/logo.png" alt="University of Wisconsin Oshkosh" />
+                </a>
+                <a href="http://www.uwosh.edu/library" class="library_no_underline library_right library_no_border" id="polk_logo">
+                    <img src="http://www.uwosh.edu/library/images/header-water-mark/" alt="Polk Library" />
+                </a>
+            </div>
+            <div class="library_hours_box_hp"></div>
+            <div style="background-color: #7b7b7b; height: 2px;"></div>
+        </div>
+    </div>
+
+    <div id="content">
+        <tal:block metal:define-slot="content" tal:content="nothing" />
+    </div>
+    
+    
+    
+    
+    
+    <div id="footer">
+        <div class="library_footer">
+            <div style="border-top: 2px solid #7b7b7b; margin:0; padding:0;"></div>
+            
+            <div class="library_footer_content">
+                <ul>
+                    <li class="library_footer_heading"><a href="http://www.uwosh.edu/library/services">Services</a></li>
+                    <li>
+                        <a href="http://www.uwosh.edu/library/accounts">My Library Accounts</a>
+                        <span class="library_footer_sub">
+                            <a href="http://wisconsin.hosted.exlibrisgroup.com/primo_library/libweb/action/login.do?loginFn=signin&amp;vid=OSH&amp;targetURL=http://wisconsin.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?vid=OSH" class="gat_footer_primo">Polk &amp; UW System</a>
+                            <span>|</span>
+                            <a href="https://wisconsin.hosts.atlas-sys.com/nonshib/gzo/" class="gat_footer_illiad">ILL</a>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="http://www.uwosh.edu/library/borrowing">Beyond UW System</a>
+                        <span class="library_footer_sub">
+                            <a href="http://www.uwosh.edu/library/ill">ILL</a>
+                            <span>|</span>
+                            <a title="WorldCat" href="http://www.remote.uwosh.edu/login?url=http://firstsearch.oclc.org/fsip?dbname=WorldCat&amp;autho=100197471&amp;screen=advanced&amp;entitypersistentWorldCat=?done=http://www.uwosh.edu/library/" class="gat_footer_worldcat">WorldCat</a>
+                            <span>|</span>
+                            <a href="http://www.uwosh.edu/library/borrowing">Not sure?</a>
+                        </span>
+                    </li>
+                    
+                    <li><a href="http://www.uwosh.edu/library/course-pages">Course Pages</a></li>
+                    <li>
+                        <a href="http://www.uwosh.edu/library/reserves">Course Reserves
+                            <span class="library_footer_sub">
+                                <span>eReserves | Traditional</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li><a href="http://www.uwosh.edu/library/groupfinder">GroupFinder</a></li>
+
+                    <li><a href="http://www.uwosh.edu/library/forms">Online Forms</a></li>
+                </ul>
+                <ul>
+                    <li class="library_footer_heading"><a href="http://www.uwosh.edu/library/collections">Collections</a></li>
+                    <li><a href="http://www.uwosh.edu/library/emc">Education Materials Center</a></li>
+                    <li><a href="http://www.uwosh.edu/archives">Archives &amp; ARC</a></li>
+                    <li><a href="http://www.uwosh.edu/library/government">Government Information</a></li>
+                    <li class="library_footer_empty"></li>
+                    <li><a href="http://www.uwosh.edu/library/collections/ebooks">eBooks Collection</a></li>
+                    <li><a href="http://www.remote.uwosh.edu/login?url=http://digital.films.com/PortalPlaylists.aspx?cid=1639&amp;aid=3068">Films on Demand</a></li>
+                    <li><a href="http://www.uwosh.edu/library/subjects">Collections by Subject</a></li>
+                </ul>
+                <ul>
+                    <li class="library_footer_heading"><a href="http://www.uwosh.edu/library/research">Research Help</a></li>
+                    <li>
+                        <a href="http://www.uwosh.edu/library/help" class="gat_ask_img">
+                            <img src="http://www.uwosh.edu/library/++resource++uwosh.librarytheme.images/ask-a-librarian-2.png" class="library_footer_img" alt="Ask a Librarian">
+                        </a>
+                        <span style="padding-bottom: 3px; padding-top: 3px;" class="library_footer_sub">
+                            <span class="libraryh3lp-container">
+                            <span jid="polk-library-ref@chat.libraryh3lp.com" style="" class="libraryh3lp polk-library-ref-marker libraryh3lp-online">
+                                <a onclick="window.open('http://libraryh3lp.com/chat/polk-library-ref@chat.libraryh3lp.com?skin=3760&amp;identity=librarian&amp;sounds=true', 'chat', 'resizable=1,width=600,height=350'); return false;" href="#" class="gat_chat_lh">
+                                Chat
+                                </a>
+                                <span> | </span>
+                            </span>
+                            
+                            <span class="libraryh3lp" style="display: none;">
+                                <a href="http://www.questionpoint.org/crs/servlet/org.oclc.admin.BuildForm?&amp;page=frame&amp;institution=10376&amp;type=2&amp;language=1" class="gat_chat_qp">
+                                    Chat
+                                </a>
+                                <span> | </span>
+                            </span>
+                            
+                        </span>
+
+
+                            <a href="http://www.uwosh.edu/library/help" class="gat_ask_link">Email</a><span> | </span>
+                            <a href="http://www.uwosh.edu/library/help" class="gat_ask_link">Phone</a><span>
+                        </span>
+                    </span></li>
+                    <li><a href="http://www.uwosh.edu/library/research/schedule-research-help" class="gat_ask_link">Schedule Research Help</a></li>
+                    <li>
+                        <a href="http://www.uwosh.edu/library/research/citing-sources">Citing Sources</a>
+                        <span class="library_footer_sub">
+                            <a href="http://www.refworks.com/RWShibboleth/?providerid=https://netid.uwosh.edu/idp/shibboleth" class="gat_footer_refworks">RefWorks</a><span> | </span>
+                            <a href="http://www.uwosh.edu/library/help/faq/refworks-help">Help</a><span>
+                        </span>
+                    
+                    </span></li>
+                    
+                    <li>
+                        <a href="http://www.uwosh.edu/library/help/faq/finding-specific-types-of-materials">How To Find Materials</a>
+                        <span class="library_footer_sub">
+                            <a href="http://www.uwosh.edu/library/help/faq/finding-specific-types-of-materials/journal-articles">Articles</a>
+                            <span>|</span>
+                            <a href="http://www.uwosh.edu/library/help/faq/finding-specific-types-of-materials/using-the-catalog">Books</a>
+                        </span>
+                    </li>
+                    <li><a href="http://www.uwosh.edu/library/help/faq/technology">Technology FAQ</a></li>
+                    
+                </ul>
+                <ul>
+                    <li class="library_footer_heading"><a href="http://www.uwosh.edu/library/community">Community</a></li>
+                    <li><a href="http://www.uwosh.edu/library/community/students">Students</a></li>
+                    <li><a href="http://www.uwosh.edu/library/community/graduates">Graduate Students</a></li>
+                    <li><a href="http://www.uwosh.edu/library/community/faculty-and-staff">Faculty &amp; Staff</a></li>
+                    <li><a href="http://www.uwosh.edu/library/community/alumni-and-visitors">Alumni &amp; Visitors</a></li>
+                    <li class="library_footer_empty"></li>
+                    <li>
+                        <a href="http://www.uwosh.edu/library/distance">Distance Education</a>
+                        <img style="height: 15px; margin-top: -4px;" alt="DE" src="http://www.uwosh.edu/library/images/de-trans.png">
+                    </li>
+                    <li><a href="http://www.uwosh.edu/library/community/disability-services">Disability Services</a></li>
+                    <li><a href="http://www.uwosh.edu/library/community/nontraditional">Nontraditional</a></li>
+                </ul>
+                <ul class="library_footer_no_side">
+                    <li class="library_footer_heading"><a href="http://www.uwosh.edu/library/about">About</a></li>
+                    <li><a href="http://www.uwosh.edu/library/hours">Library Hours</a></li>
+                    <li><a href="http://www.uwosh.edu/library/newsletter">Polk Library Newsletter</a></li>
+                    <li><a href="http://www.uwosh.edu/library/contact">Contact us</a></li>
+                    <li><a href="http://www.uwosh.edu/library/staff">Staff &amp; Department Directory</a></li>				
+                    <li>
+                        <a href="http://www.uwosh.edu/library/about/policies">Library Policies</a>
+                        <span class="library_footer_sub">
+                            <a href="http://www.uwosh.edu/library/about/policies/privacy-policy">Privacy</a>
+                            <span>|</span>
+                            <a href="http://www.uwosh.edu/library/circulation">Circulation</a>
+                        </span>
+                    </li>
+                    
+                    <li><a href="http://www.uwosh.edu/library/about/polk-library-facts/map-of-the-library">Map of the Library</a></li>
+                    <li><a href="http://www.uwosh.edu/library/about/in-the-library-building">In the Library Building</a></li>
+                    
+                </ul>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+        
+        <div id="uwoshFooter">
+
+            
+            <ul class="footerMap footMapColumn1">
+                
+                
+                <li class="future_studentsMap">
+                    <a href="http://www.uwosh.edu/home/future-students">Future Students</a>
+                </li>
+                
+                
+                
+                <li class="parentsMap">
+                    <a href="http://www.uwosh.edu/home/parents-and-family">Parents</a>
+                </li>
+                
+                
+                
+                <li class="alumniMap">
+                    <a href=" http://www.uwosh.edu/alumni">Alumni</a>
+                </li>
+                
+                
+                
+                <li class="faculty_and_staffMap">
+                    <a href="http://www.uwosh.edu/home/faculty-staff">Faculty and Staff</a>
+                </li>
+                
+                
+                
+                <li class="current_studentsMap">
+                    <a href="http://www.uwosh.edu/home/current-students">Current Students</a>
+                </li>
+                
+                
+                
+                <li class="about_uw_oshkoshMap">
+                    <a href="http://www.uwosh.edu/home/about-uw-oshkosh">About UW Oshkosh</a>
+                </li>
+                
+                
+                
+                <li class="academicsMap">
+                    <a href="http://www.uwosh.edu/home/future-students/undergraduate/academics">Academics</a>
+                </li>
+                
+            </ul>
+            
+            
+            <ul class="footerMap footMapColumn2">
+                
+                
+                <li class="athleticsMap">
+                    <a href=" http://www.titans.uwosh.edu/">Athletics</a>
+                </li>
+                
+                
+                
+                <li class="admissionsMap">
+                    <a href=" http://admissions.uwosh.edu/">Admissions</a>
+                </li>
+                
+                
+                
+                <li class="administrationMap">
+                    <a href="http://www.uwosh.edu/home/administration">Administration</a>
+                </li>
+                
+                
+                
+                <li class="resourcesMap">
+                    <a href="http://www.uwosh.edu/home/resources">Resources</a>
+                </li>
+                
+                
+                
+                <li class="calendarsMap">
+                    <a href="http://www.uwosh.edu/home/calendars">Calendars</a>
+                </li>
+                
+                
+                
+                <li class="media_relationsMap">
+                    <a href=" http://www.uwosh.edu/imc/media-relations/newsroom">Media Relations</a>
+                </li>
+                
+            </ul>
+            
+            
+            <ul class="footerMap footMapColumn3">
+                
+                
+                <li class="community_and_visitorsMap">
+                    <a href="http://www.uwosh.edu/home/community-and-visitors">Community &amp; Visitors</a>
+                </li>
+                
+                
+                
+                <li class="careersMap">
+                    <a href=" http://www.uwosh.edu/hr/jobs.php">Work at UW Oshkosh</a>
+                </li>
+                
+                
+                
+                <li class="career_servicesMap">
+                    <a href="http://www.uwosh.edu/career/">Career Services</a>
+                </li>
+                
+                
+                
+                <li class="titan_servicesMap">
+                    <a href="http://www.uwosh.edu/home/titan-services-and-campus-resources#documentContent">Titan Services</a>
+                </li>
+                
+                
+                
+                <li class="contact_usMap">
+                    <a href="http://www.uwosh.edu/home/contact-us">Contact Us</a>
+                </li>
+                
+                
+                
+                <li class="accessibilityMap">
+                    <a href="http://www.uwosh.edu/library/accessibility-info">Accessibility</a>
+                </li>
+                
+            </ul>
+
+            <div id="resources">
+                <table>
+                    <tbody><tr>
+                        <td>
+                            <a target="_blank" href="http://www.uwosh.edu/chancellor/systemofaccountability/">
+                                <img src="http://www.uwosh.edu/library/collegePortrait.gif" alt="College Portrait">
+                            </a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="http://www.wisconsin.edu/">
+                                <img src="http://www.uwosh.edu/library/uwSystem.gif" alt="University of Wisconsin System">
+                            </a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="http://www.uwosh.edu/">
+                                <img src="http://www.uwosh.edu/library/uwoLogo.gif" alt="University of Wisconsin Oshkosh">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    
+    <div id="footer-links">
+    
+        <a tal:condition="request.can_edit" href="${request.application_url}/manage">Manage</a>
+        <span> &nbsp; &nbsp; &nbsp; </span>
+        <a tal:condition="not:request.user.id" href="${request.application_url}/login">Login</a>
+        <a tal:condition="request.user.id" href="${request.application_url}/logout">Logout</a>
+    </div>
+
+    
+    <script type="text/javascript">
+        LoadUniversalAnalytics = function(file, callback) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.src = document.location.protocol + '//polk2.uwosh.edu/analytics/' + file;
+            s.onload = callback;
+            document.getElementsByTagName('head')[0].appendChild(s);
+        };
+
+        LoadUniversalAnalytics('uat.js', function() {
+            LoadUniversalAnalytics('pas.js', function() {
+                var ua = new UniversalAnalyticsTracker('polk', {
+                    'ua_account_live': 'UA-25321418-1',
+                    'ua_matchurl_live': 'polk.uwosh.edu',
+                    'ua_account_test': 'UA-9924341-1',
+                    'defined_dimensions':{'dimension2':'Fullsite'},
+                    'auto_pageview': false,
+                });
+             
+                // Polk Standard Tracking
+                pas.track_group_with_pageview(ua); // Track Standard Pageview
+                pas.track_forms(ua); // Track forms
+                pas.track_outbounds(ua); // Track outbound links via Pageview
+            });
+        });
+    </script>
+    
+    
+</body>
+
+</html>

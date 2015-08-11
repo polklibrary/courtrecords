@@ -1,0 +1,19 @@
+from sqlalchemy import Column,Integer,BigInteger,String,Unicode,Boolean,TIMESTAMP,ForeignKey,Table,Text
+from sqlalchemy.orm import relation
+from courtrecords.models import Base,DBSession,Model
+
+
+class Prefixs(Base,Model):
+    __tablename__ = 'prefixs'
+    
+    __scaffold__ = [{'id': { 'widget': 'input', 'label': 'ID', 'attributes': {'type':'text', 'disabled':'true'} } },
+                    {'prefix': { 'widget': 'input', 'label': 'Prefix', 'attributes': {'type':'text'} } },
+    ]
+
+    id = Column(Integer, primary_key=True)
+    prefix = Column(Unicode(25))
+    
+    def __init__(self, **kwargs):
+        self.prefix = kwargs.get('prefix','')
+
+    

@@ -1,0 +1,39 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    
+    <tal:block metal:fill-slot="header">
+        - Editing Record
+    </tal:block>
+    
+    
+    <tal:block metal:fill-slot="css">
+    </tal:block>
+    
+    <tal:block metal:fill-slot="js">
+        <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/scaffold.js')}"></script>
+        <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/manage.js')}"></script>
+        <script>
+            $(document).ready(function(){
+            });
+        </script>
+    </tal:block>
+     
+    <tal:block metal:fill-slot="content">
+
+        <form id="manage-utilities" action="" method="post" >
+
+            <h2>Utilities</h2>
+            <div id="manage-utilities" class="row">
+                <input class="button" type="submit" value="Reindex Year Fields" name="edit.Form.reindex.year" />
+                (Takes a long time to run)
+            </div>
+
+        </form>
+
+        
+    </tal:block>
+     
+</metal:page>

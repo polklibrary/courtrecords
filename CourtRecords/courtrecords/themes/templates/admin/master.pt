@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  
+    <tal:block metal:define-slot="title">
+        <title>UW Oshkosh Archives - Court Records</title>
+    </tal:block>  
+    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/datatables/jquery.dataTables.css')}" />
+    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
+    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/manage.css')}" />
+    <noscript>
+        <style> 
+            .needs-js { display:none; } 
+        </style>
+    </noscript>
+  
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/cookies/jquery_cookies.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/datatables/jquery.dataTables.min.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/validators/jquery.currency.js')}"></script>
+    <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/manage.js')}"></script>
+    <script type="text/javascript">
+        var domain = '${request.application_url}';
+    </script>
+  
+    <tal:block metal:define-slot="css" tal:content="nothing">
+       Extendable CSS Slot
+    </tal:block>  
+    <tal:block metal:define-slot="js" tal:content="nothing">
+       Extendable JS Slot
+    </tal:block> 
+  
+</head>
+
+<body>
+
+
+
+    <div id="header">
+        Court Records <tal:block metal:define-slot="header" tal:content="nothing" />
+    </div>
+
+    <div id="navigation">
+        <ul>
+            <li>
+                <a href="${request.application_url}/manage">Home</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/cases">Manage Cases</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/entities">Manage Entities</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/orders">Manage Orders</a>
+            </li>
+
+            <li style="margin-top: 15px;">
+                <a href="${request.application_url}/manage/data/ActionTypes">Manage Action Types</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Archives">Manage Archives</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/CallNumbers">Manage Call Numbers</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Containers">Manage Containers</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Counties">Manage Counties</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Courts">Manage Courts</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Prefixs">Manage Prefixs</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Roles">Manage Roles</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Statuses">Manage Statuses</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Suffixs">Manage Suffixs</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/users">Manage Users</a>
+            </li>
+            
+            
+            <li style="margin-top: 15px;">
+                <a href="${request.application_url}/manage/importer">Import Tool</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/utilities">Utility Tools</a>
+            </li>
+            <li>
+                <a href="${request.application_url}/manage/data/Config">Manage Config</a>
+            </li>
+            <li>
+                <a href="${request.application_url}">Exit</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div id="content">
+        <tal:block metal:define-slot="content" tal:content="nothing" />
+    </div>
+
+    
+</body>
+
+</html>

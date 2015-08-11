@@ -1,0 +1,40 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    <tal:block metal:fill-slot="content">
+        
+        <h2 class="heading">
+            Court Records Login
+        </h2>
+        <div id="breadcrumbs">
+            <a href="http://www.uwosh.edu/library">Polk Library</a>
+            <span>&rsaquo;</span>
+            <a href="http://www.uwosh.edu/archives">Archives</a>
+            <span>&rsaquo;</span>
+            <a href="${request.application_url}">Court Records</a>
+            <span>&rsaquo;</span>
+            <a href="">Login</a>
+        </div>
+        
+        <br />
+        <div id="issue" tal:condition="issue">
+            ${issue}
+        </div>
+        
+        <form id="login" method="post">
+            <h3>Login</h3>
+            <div>
+                <label>Email: <input type="text" name="email" value="" /></label>
+                <label>Password: <input type="password" name="pass" value="" /></label>
+
+                <div class="buttons">
+                    <input class="button" type="submit" name="submit" value="Login" />
+                </div>
+            </div>
+        </form>
+        
+    </tal:block>
+     
+</metal:page>

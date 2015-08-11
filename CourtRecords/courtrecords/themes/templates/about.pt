@@ -1,0 +1,123 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    <tal:block metal:fill-slot="content">
+        <div id="about">
+            <h2 class="heading">
+                About
+            </h2>
+            <div id="breadcrumbs">
+                <a href="http://www.uwosh.edu/library">Polk Library</a>
+                <span>&rsaquo;</span>
+                <a href="http://www.uwosh.edu/archives">Archives</a>
+                <span>&rsaquo;</span>
+                <a href="${request.application_url}">Court Records</a>
+                <span>&rsaquo;</span>
+                <a href="${request.application_url}/about">About</a>
+            </div>
+            
+            <h3>Court Records Index</h3>
+            <div class="left content">
+                Todo
+            </div>
+            <table class="left content">
+                <thead>
+                    <tr>
+                        <th>County</th>
+                        <th>Years</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dodge</td>
+                        <td>1844-1954</td>
+                    </tr>
+                    <tr>
+                        <td>Fond du Lac</td>
+                        <td>1844-1974</td>
+                    </tr>
+                    <tr>
+                        <td>Green Lake</td>
+                        <td>1858-1949</td>
+                    </tr>
+                    <tr>
+                        <td>Marquette</td>
+                        <td>1848-1949</td>
+                    </tr>
+                    <tr>
+                        <td>Winnebago</td>
+                        <td>1844-1963</td>
+                    </tr>
+                
+                </tbody>
+            </table>
+            <div class="clear"></div>
+            
+            
+            <br />
+            <br />
+            
+            <h3>Naturalizations Index</h3>
+            <div class="left content">
+            Currently all records for Dodge, Green Lake, Marquette and Winnebago counties are indexed!
+            The Naturalization Act of 1802 established a three-part naturalization process, essentially 
+            the same that exists today, wherein aliens must declare their intention to become a U.S. citizen, 
+            serve a required residency period, and file a petition for admission to citizenship. This 
+            process resulted in two major forms of records: the Declaration of Intention ("First Papers") 
+            and the Petition ("Second" or "Final Papers"), and each of these was usually supplemented with 
+            some kind of indexing system. A prospective citizen had to wait at least two years between 
+            declaring and petitioning, and at the time of petitioning had to have been a United States 
+            resident for at least five years. PLEASE NOTE: Prior to 1922, and the passage of the Married 
+            Woman's Act, women did not generally naturalize themselves. Instead they received derivative citizenship
+            when their husbands naturalized. Do not expect to find naturalization records for women prior to 1922.
+            Information found on naturalization forms vary greatly from county to county and year to year. Types of 
+            information that may be included are: birthplace and birth date of the immigrant, date and port of 
+            entry in the United States, the name of the ship in which the immigrant traveled, or even the names 
+            of the immigrant's spouse and children. Some 20th century records include the immgrant's photograph.
+            </div>
+            <table class="left content">
+                <thead>
+                    <tr>
+                        <th>County</th>
+                        <th>Years</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dodge</td>
+                        <td>1844-1954</td>
+                    </tr>
+                    <tr>
+                        <td>Fond du Lac</td>
+                        <td>1844-1974</td>
+                    </tr>
+                    <tr>
+                        <td>Green Lake</td>
+                        <td>1858-1949</td>
+                    </tr>
+                    <tr>
+                        <td>Marquette</td>
+                        <td>1848-1949</td>
+                    </tr>
+                    <tr>
+                        <td>Winnebago</td>
+                        <td>1844-1963</td>
+                    </tr>
+                
+                </tbody>
+            </table>
+            <div class="clear"></div>
+            
+            
+            
+            
+            
+        </div>
+        
+
+        
+    </tal:block>
+     
+</metal:page>

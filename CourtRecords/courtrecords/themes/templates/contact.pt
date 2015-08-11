@@ -1,0 +1,61 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    <tal:block metal:fill-slot="content">
+        <div id="contact">
+            <h2 class="heading">
+                Contact
+            </h2>
+            <div id="breadcrumbs">
+                <a href="http://www.uwosh.edu/library">Polk Library</a>
+                <span>&rsaquo;</span>
+                <a href="http://www.uwosh.edu/archives">Archives</a>
+                <span>&rsaquo;</span>
+                <a href="${request.application_url}">Court Records</a>
+                <span>&rsaquo;</span>
+                <a href="${request.application_url}/contact">Contact</a>
+            </div>
+            
+            <h3>General Email</h3>
+            <div class="content">
+                Please contact <a href="mailto:archives@uwosh.edu">archives@uwosh.edu</a> for any questions.                 
+            </div>
+            
+            <br />
+            <br />
+            
+            <h3>Staff Email</h3>
+            <div class="content">
+                Joshua Ranger - archivist - <a href="mailto:ranger@uwosh.edu">ranger@uwosh.edu</a> <br />
+                Jennifer Bumann - archives assistant (available M-F 8-12)- <a href="mailto:bumann@uwosh.edu">bumann@uwosh.edu    </a>           
+            </div>
+            
+            <br />
+            <br />
+            
+            <h3>Address</h3>
+            <div class="content">
+                Forrest Polk Library <br />
+                800 Algoma Blvd. <br />
+                Oshkosh, WI 54901           
+            </div>
+            
+            <br />
+            <br />
+            
+            <h3>Phone</h3>
+            <div class="content">
+               (sorry, no reference requests will be accepted via telephone): <br />
+                Joshua Ranger - (920) 424-0828 <br />
+                Jennifer Bumann - (920) 424-7373                 
+            </div>
+            
+        </div>
+        
+
+        
+    </tal:block>
+     
+</metal:page>

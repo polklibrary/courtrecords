@@ -1,0 +1,67 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    <tal:block metal:fill-slot="css">
+        <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
+    </tal:block>
+    
+    <tal:block metal:fill-slot="js">
+        <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.js')}"></script>
+        <script>
+            $(document).ready(function(){
+                $('input[name="email"]').tooltip({
+                    content: "",
+                    items: "input"
+                });
+                $('input[name="pass"]').tooltip({
+                    content: "Passwords must be between 8 and 20 characters. Passwords must contain at least one alphabet character and at least one number.",
+                    items: "input"
+                });
+                $('input[name="repass"]').tooltip({
+                    content: "Please re-type your password to confirm it wasn't mistyped.",
+                    items: "input"
+                });
+            });
+        </script>
+    </tal:block>
+    
+    
+    <tal:block metal:fill-slot="content">
+    
+        <h2 class="heading">
+            Court Records Registration
+        </h2>
+        <div id="breadcrumbs">
+            <a href="http://www.uwosh.edu/library">Polk Library</a>
+            <span>&rsaquo;</span>
+            <a href="http://www.uwosh.edu/archives">Archives</a>
+            <span>&rsaquo;</span>
+            <a href="${request.application_url}">Court Records</a>
+            <span>&rsaquo;</span>
+            <a href="">Registration</a>
+        </div>
+        
+        <div id="issue" tal:condition="issue">
+            ${issue}
+        </div>
+        
+        <form id="register" method="post" tal:condition="allow_registration">
+
+            <h3>Register</h3>
+            <div>
+                <label>Your Email: <input type="text" name="email" value="" autocomplete="off" /></label>
+                <label>Password: <input type="password" name="pass" value="" autocomplete="off" /></label>
+                <label>Confirm Password: <input type="password" name="repass" value="" autocomplete="off" /></label>
+                
+                <div class="buttons">
+                    <input class="button" type="submit" name="submit" value="Register" />
+                </div>
+            </div>
+
+        </form>
+        
+    </tal:block>
+     
+</metal:page>

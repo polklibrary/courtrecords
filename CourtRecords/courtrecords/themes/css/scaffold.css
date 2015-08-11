@@ -1,0 +1,35 @@
+
+#scaffold-edit label {
+    display: block;
+}
+
+#scaffold-edit input[type="text"], #scaffold-edit input[type="checkbox"], #scaffold-edit input[type="radio"], 
+#scaffold-edit select, #scaffold-edit textarea {
+    margin-bottom: 20px;
+}
+
+#scaffold-edit input[type="text"]{
+    display: block;
+    width: 200px;
+}
+
+#scaffold-edit textarea {
+    display: block;
+    height: 100px;
+    width: 90%;
+}
+
+#scaffold-edit *[disabled] {
+    color: #666666;
+    font-style: italic;
+}
+
+#scaffold-edit #scaffold-table td:last-child {
+    text-align: right;
+}
+
+
+
+
+
+

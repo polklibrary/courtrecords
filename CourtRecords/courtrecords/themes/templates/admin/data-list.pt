@@ -1,0 +1,77 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    <tal:block metal:fill-slot="css">
+        <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/scaffold.css')}" />
+    </tal:block>
+    
+    <tal:block metal:fill-slot="js">
+        <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/tinymce/js/tinymce/tinymce.min.js')}"></script>
+        <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/scaffold.js')}"></script>
+        <script>
+            $(document).ready(function(){
+                $("#scaffold-table").dataTable({
+                    'processing': true,
+                    'serverSide': true,
+                    'searching': false,
+                    'lengthChange': false,
+                    'pageLength': 10,
+                    'order': [[ 0, 'asc' ]],
+                    'ajax': {
+                        'url':'${request.application_url}/manage/data/${table}/list'
+                    },
+                    'createdRow': function( row, data, dataIndex ) {
+                        var id = $.trim($(row).find('td:first-child').text());
+                        var edit = $('<a>').addClass('button').attr('href','${request.application_url}/manage/data/${table}/edit/' + id).html('Edit');
+                        var del = $('<a>').addClass('button red warning').attr('href','${request.application_url}/manage/data/${table}/delete/' + id).html('Delete');
+                        $(row).find('td:last-child').append(edit).append(del);
+                        $('#scaffold-table th:last-child').off();
+                        
+                        $(row).mousedown(function(e){
+                            if (!$(e.target).is('a')) {
+                                if( (e.which == 1) ) 
+                                    document.location.href = '${request.application_url}/manage/data/${table}/edit/' + id;
+                                if( (e.which == 2) ) {
+                                    var win = window.open('${request.application_url}/manage/data/${table}/edit/' + id, '_blank');
+                                    win.focus();
+                                }
+                            }
+                        });
+                        
+                    } 
+                }); 
+            }); 
+        </script>
+    </tal:block>
+    
+    <tal:block metal:fill-slot="header">
+        - Listing ${table}
+    </tal:block>
+    
+    <tal:block metal:fill-slot="content">
+        
+        <div class="buttons">
+            <a class="button green" href="${request.application_url}/manage/data/${table}/add">Add New ${table}</a>
+        </div>
+        
+        <h2>All ${table}</h2>
+        <div id="scaffold-edit" class="row">
+            <table id="scaffold-table" class="tablesorter dt-generic-style">
+                <thead>
+                    <tr>
+                        <th tal:repeat="th thead"> ${th} </th>
+                        <th> Options </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        <div class="buttons">
+            <a class="button green" href="${request.application_url}/manage/data/${table}/add">Add New ${table}</a>
+        </div>
+
+    </tal:block>
+     
+</metal:page>

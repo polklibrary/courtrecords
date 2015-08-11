@@ -1,0 +1,91 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+        
+    <tal:block metal:fill-slot="header">
+        - Cases List
+    </tal:block>
+    
+    <tal:block metal:fill-slot="css">
+    </tal:block>
+    
+    <tal:block metal:fill-slot="js">
+        <script>
+            $(document).ready(function(){
+                QuickSearch.init();
+                
+                $("#manage-search-results-table").dataTable({
+                    'processing': true,
+                    'serverSide': true,
+                    'searching': false,
+                    'lengthChange': true,
+                    'pageLength': 10,
+                    'order': [[ 0, 'asc' ]],
+                    'ajax': {
+                        'url':'${request.application_url}/manage/cases/get'
+                    },
+                    'createdRow': function( row, data, dataIndex ) {
+                        var id = $.trim($(row).find('td:nth-child(1)').text());
+                        var year = parseInt($.trim($(row).find('td:nth-child(4)').text()));
+                        $(row).mousedown(function(e){
+                            if( (e.which == 1) ) 
+                                document.location.href = '${request.application_url}/manage/records/' + id;
+                            if( (e.which == 2) ) {
+                                var win = window.open('${request.application_url}/manage/records/' + id, '_blank');
+                                win.focus();
+                            }
+                        });
+                        var text = $(row).find('td:last-child').text();
+                        try{
+                            var shortened = text.substring(0,20);
+                            $(row).find('td:last-child').text(shortened);
+                        }catch(e){}
+                        
+                        
+                    } 
+                }); 
+                
+            });
+        </script>
+    </tal:block>
+     
+    <tal:block metal:fill-slot="content">
+    
+        <div class="buttons">
+            <input class="button purple manage-quick-search-button" type="button" value="Quick Search" />
+            <a class="button green" href="${request.application_url}/manage/records/new">Add Record</a>
+        </div>
+    
+        <h2>All Cases</h2>
+        <div id="manage-search-results" class="row">
+            <table id="manage-search-results-table" class="tablesorter dt-generic-style">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Action Type</th>
+                        <th>Case Number</th>
+                        <th>Year</th>
+                        <th>Container</th>
+                        <th>Container Number</th>
+                        <th>Subset</th>
+                        <th>County</th>
+                        <th>Court</th>
+                        <th>Call Number</th>
+                        <th>Archive</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        <div class="buttons">
+            <input class="button purple manage-quick-search-button" type="button" value="Quick Search" />
+            <a class="button green" href="${request.application_url}/manage/records/new">Add Record</a>
+        </div>
+
+        
+    </tal:block>
+     
+</metal:page>

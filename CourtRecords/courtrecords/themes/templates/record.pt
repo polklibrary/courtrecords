@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  
+    <tal:block metal:define-slot="title">
+        <title>Project Home</title>
+    </tal:block>
+    
+    <style> 
+        html, body {
+            background-color: transparent;
+            font: 14px "Helvetica",Verdana,Lucida,Arial,sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        img { border: 0 none; }
+        .left { float: left; }
+        .right { float: right; }
+        .clear { clear: both; }
+        .hide { display: none; }
+        
+        h2 {
+            background-color: #e6e6e6;
+            padding: 5px 10px;
+        }
+        h3 {
+            padding: 2px 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+
+        .record {
+            min-width: 600px;
+        }
+        .record .options {
+            background-color: #F3F3F3;
+            border-bottom: 1px solid #dddddd;
+            padding: 2px 2px;
+            text-align: right;
+            
+        }
+        .record .options a {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .record  div.left {
+            padding: 7px;
+            width: 300px;
+        }
+
+        .record div.left label {
+            display: block;
+        }
+        .record div.left span {
+            display: block;
+            margin-left: 10px;
+            width: 260px;
+        }
+
+        .record table {
+            background-color: #F3F3F3;
+            border: 1px solid #dddddd;
+            border-collapse: collapse;
+            margin: 7px 10px 0px 10px;
+            text-align: left;
+            width: 300px;
+        }
+        .record table th{
+            border-bottom: 1px solid #dddddd;
+            padding: 2px 15px;
+        }
+         .record table td{
+            padding: 2px 20px;
+        }
+
+        .record div.cost{
+            color: indianred;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 0px;
+            text-align: right;
+        }
+
+        div.steps {
+            background-color: #f8f8f8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="record">
+        <div class="options" tal:condition="python: not mode or request.can_edit">
+            
+            <tal:block condition="request.can_edit">
+                <a href="${request.application_url}/manage/records/${record.case.Cases.id}" target="_blank">
+                    <img src="${request.static_url('courtrecords:themes/images/icons/pencil.png')}" alt="Edit mode" title="Edit mode" />
+                </a>
+            </tal:block>
+            
+            <a tal:condition="not: mode" href="${request.application_url}/record/${record.case.Cases.id}?mode=full" target="_blank">
+                <img src="${request.static_url('courtrecords:themes/images/icons/note_go.png')}" alt="Full mode" title="Full mode" />
+            </a>
+
+        </div>
+        <div class="left">
+            <div tal:condition="record.verses">
+                <label>Title:</label> 
+                <span>
+                    ${record.verses}
+                </span>
+            </div>
+            <div>
+                <label>Case Type:</label> 
+                <span>${record.case.ActionTypes.actiontype}</span>
+            </div>
+            <div>
+                <label>Court:</label> 
+                <span>${record.case.Courts.court}</span>
+            </div>
+            <div>
+                <label>Year:</label> 
+                <span tal:condition="record.case.Cases.year_text">
+                    ${record.case.Cases.year_text} 
+                </span>
+                <span tal:condition="not: record.case.Cases.year_text">
+                   --
+                </span>
+            </div>
+            <div>
+                <label>County:</label> 
+                <span>${record.case.Counties.county}</span>
+            </div>
+            <div class="hide">
+                <label>Archives:</label> 
+                <span>${record.case.Archives.name}</span>
+            </div>
+            <div tal:condition="record.case.Cases.notes">
+                <label>Notes:</label> 
+                <span>${record.case.Cases.notes}</span>
+            </div>
+            <div tal:condition="record.case.Containers.container">
+                <label>Container:</label> 
+                <span>${record.case.Containers.container}</span>
+            </div>
+            <div tal:condition="record.case.Cases.container_number">
+                <label>Container Number:</label> 
+                <span>${record.case.Cases.container_number}</span>
+            </div>
+            <div tal:condition="record.case.Cases.subset">
+                <label>Container Subset:</label> 
+                <span>${record.case.Cases.subset}</span>
+            </div>
+            <div tal:condition="record.case.Cases.case_number">
+                <label>Case Number:</label> 
+                <span>${record.case.Cases.case_number}</span>
+            </div>
+            <div>
+                <label>Call Number:</label> 
+                <span>${record.case.CallNumbers.call_number}</span>
+            </div>
+            <tal:if condition="mode">
+                <div>
+                    <label>Unique ID:</label> 
+                    <span>${record.case.Cases.id}</span>
+                </div>
+            </tal:if>
+            
+        </div>
+        
+        <table class="right">
+            <thead>
+                <tr>
+                    <th>Entity</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tal:block repeat="entity record.entities">
+                <tr>
+                    <td>${entity.Prefixs.prefix} 
+                        ${entity.Entities.firstname} 
+                        ${entity.Entities.middlename} 
+                        ${entity.Entities.entity} 
+                        ${entity.Suffixs.suffix}
+                    </td>
+                    <td>${entity.Roles.role}</td>
+                </tr>
+            </tal:block >
+            </tbody>
+        </table>
+        
+        <div class="clear"></div>
+
+         
+</body>
+
+</html>

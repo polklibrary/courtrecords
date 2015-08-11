@@ -1,0 +1,78 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+        
+    <tal:block metal:fill-slot="header">
+        - All Orders
+    </tal:block>
+    
+    
+    <tal:block metal:fill-slot="css">
+    </tal:block>
+    
+    <tal:block metal:fill-slot="js">
+        <script>
+
+            $(document).ready(function(){
+                var datatable = $("#invoice-table").dataTable({
+                    'processing': false,
+                    'serverSide': false,
+                    'searching': false,
+                    'lengthChange': false,
+                    'pageLength': 10,
+                    'paging': true,
+                    'order': [[ 0, 'asc' ]]
+                }); 
+                
+                $('#invoice-table tbody tr').each(function(){
+                    var id = $(this).attr('data-id');
+                    $(this).click(function(){
+                        document.location = '${request.application_url}/manage/orders/' + id;
+                    });
+                });
+                
+                
+                
+            });
+        </script>
+    </tal:block>
+    
+    <tal:block metal:fill-slot="header">
+        - Invoices
+    </tal:block>
+    
+    <tal:block metal:fill-slot="content">
+        
+        <h2>Open Orders</h2>
+        <div class="row">
+            <table id="invoice-table" class="tablesorter dt-generic-style">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Order Date</th>
+                        <th>Records Ordered</th>
+                        <th>Price</th>
+                        <th>Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="invoice invoices" data-id="${invoice.id}">
+                        <td>${invoice.fullname}</td>
+                        <td>${invoice.email}</td>
+                        <td>${invoice.phone}</td>
+                        <td>${invoice.created}</td>
+                        <td>${invoice.get_total_records}</td>
+                        <td>${invoice.total_price}</td>
+                        <td>${invoice.get_status.status}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </tal:block>
+     
+</metal:page>

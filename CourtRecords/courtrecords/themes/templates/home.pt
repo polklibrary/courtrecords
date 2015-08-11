@@ -1,0 +1,117 @@
+<metal:page
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: master.pt">
+    
+    <tal:block metal:fill-slot="content">
+        <div id="home">
+            <h2 class="heading">
+                Court Records
+            </h2>
+            <div id="breadcrumbs">
+                <a href="http://www.uwosh.edu/library">Polk Library</a>
+                <span>&rsaquo;</span>
+                <a href="http://www.uwosh.edu/archives">Archives</a>
+                <span>&rsaquo;</span>
+                <a href="${request.application_url}">Court Records</a>
+            </div>
+            
+            <div class="home-box">
+                <span style="height: 2px;">&nbsp;</span>
+                
+                <div class="details">
+                    ${warning_info}
+                </div>
+                
+                <form method="post" action="${request.application_url}/search">
+                    <span class="heading">Start your search here</span>
+                    <label for="entity" class="hide">Last Name / Institution name</label>
+                    <input id="entity" type="text" value="" name="entity" placeholder="Last name / Institution name" />
+
+                    <label for="first-name" class="hide">First Name</label>
+                    <input id="first-name" type="text" value="" name="firstname" placeholder="First name" />
+                    <input id="search-mode" type="hidden" name="mode" value="basic" />
+
+                    <input class="button" type="submit" value="Search" name="search" />
+                    
+
+                    
+                    <br />
+                    
+                    <div class="browse">
+                        <a href="${request.application_url}/search?mode=browse">or browse the collection.</a>
+                    </div>
+                    
+
+                    
+                    
+                </form>
+                
+                <div class="info0">
+                    <span class="heading">Court Records</span>
+                    <tal:block replace="structure courtrecord_info"></tal:block>
+                </div>
+                
+                <div class="info1">
+                    <span class="heading">Naturalization Records</span>
+                    <tal:block replace="structure naturalizations_info"></tal:block>
+                </div>
+                
+                <div class="info2">
+                    <span class="heading">Records Information</span>
+                    <tal:block replace="structure record_info"></tal:block>
+                </div>
+                
+            </div>
+            
+            <div>
+                <a href="about" class="about1 left">
+                    About the records
+                </a>
+                <a href="http://www.uwosh.edu/archives/contact.htm" class="contact1 left">
+                    Contact us
+                </a>
+                <div class="clear"></div>
+            </div>
+            
+            
+            
+            
+            
+            <!--
+            
+            <a class="start-here left" href="${request.application_url}/search">Start your search <img src="${request.static_url('courtrecords:themes/images/search.png')}" alt="Magnifying Glass"/></a>
+
+            <a class="about left" href="${request.application_url}/about">About the records <img src="${request.static_url('courtrecords:themes/images/info.png')}" alt="Magnifying Glass"/></a>
+
+            <a class="contact left" href="${request.application_url}/contact">Contact us <img src="${request.static_url('courtrecords:themes/images/question.png')}" alt="Magnifying Glass"/></a>
+
+            <div class="clear"></div>
+            
+            <div class="naturalizations">
+                    <h3>Naturalization Records Index</h3>
+                    <div>
+                        This index contains naturalization records dating between the 1840s and 1970s held at the UW Oshkosh Archives and Area Research Center.
+                    </div>
+            </div>
+            <div class="circuit-court">
+                    <h3>Court Records Index</h3>
+                    <div class="right">
+                        This index contains Circuit Court records, County Court records and Family Court records dating between the 1840s and 1970s held at the UW Oshkosh Archives and Area Research Center.
+                    </div>
+                    <div class="clear"></div>
+            </div>
+            
+            -->
+            
+            
+        </div>
+        
+        
+        <br />
+        <br />
+
+        
+    </tal:block>
+     
+</metal:page>

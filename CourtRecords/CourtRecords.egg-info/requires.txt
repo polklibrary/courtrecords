@@ -1,0 +1,12 @@
+chameleon==2.11
+pyramid==1.3.3
+pymysql==0.5
+mako==0.7.3
+SQLAlchemy==0.7.8
+transaction
+pyramid_tm==0.7
+pyramid_mailer==0.11
+repoze.sendmail==4.0
+zope.sqlalchemy
+waitress
+requests
