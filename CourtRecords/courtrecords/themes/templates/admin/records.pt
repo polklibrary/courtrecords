@@ -303,8 +303,8 @@
                         </select>
                     </td>
                     <td><input type="text" value="" name="new.Entities.lastname.{index}" /></td>
-                    <td><input type="text" value="" name="new.Entities.middlename.{index}" /></td>
                     <td><input type="text" value="" name="new.Entities.firstname.{index}" /></td>
+                    <td><input type="text" value="" name="new.Entities.middlename.{index}" /></td>
                     <td>
                         <select name="new.Entities.suffix.{index}">
                             <option tal:repeat="su suffixs" value="${su.id}">
