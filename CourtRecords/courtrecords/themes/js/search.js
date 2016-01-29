@@ -398,15 +398,15 @@ var Basket = {
     
     update : function () {
         var count = Object.keys(this.items()).length;
-        $('#cart-count > span').html(count);
+        $('#cart-count').html(count);
         if (count > 0) {
             $('#cart-count').addClass('b');
             $('#checkout-link').show();
         }
         if (count == 1)
-            $('#cart-count > div').html('Item');
+            $('#cart-items').html('Item');
         else
-            $('#cart-count > div').html('Items');
+            $('#cart-items').html('Items');
             
     }   
 }

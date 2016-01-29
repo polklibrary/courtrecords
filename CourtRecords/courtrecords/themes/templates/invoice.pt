@@ -18,86 +18,86 @@
             });
         </script>
     </tal:block>
-     
+    
+    <tal:block metal:fill-slot="breadcrumbs">
+        <div id="breadcrumbs">
+            <a href="http://plonedev.uwosh.edu/archives">Archives &amp; ARC</a>
+            <span>&#9002;</span>
+            <a href="${request.application_url}">Court Records</a>
+            <span>&#9002;</span>
+            <a href="${request.application_url}">Your Order</a>
+        </div>
+    </tal:block>
+    
     <tal:block metal:fill-slot="content">
     
-    
-        <h2 class="heading">
-            Court Records - Your Order
-        </h2>
-        <div id="breadcrumbs">
-            <a href="http://www.uwosh.edu/library">Polk Library</a>
-            <span>&rsaquo;</span>
-            <a href="http://www.uwosh.edu/archives">Archives</a>
-            <span>&rsaquo;</span>
-            <a href="${request.application_url}">Court Records</a>
-        </div>
-        
-        <div id="invoice">
-        
-            <h2>Order Information</h2>
-            <div id="customer">
-                <div class="left">
-                    <h3>Customer Information</h3>
-                    <label>Name:</label>${invoice.fullname}
-                    <br />
-                    <label>Phone:</label>${invoice.secure_phone}
-                    <br />
-                    <label>Email:</label>${invoice.secure_email}
-                    <br />
-                    <tal:block condition="invoice.secure_address">
-                    <label>Address:</label>***** ${invoice.secure_address}
-                    <br />
-                    </tal:block>
-                </div>
-                <div class="right">
-                    <h3>Order Status</h3>
-                    <label class="status">${invoice.get_status.status}</label>
-                </div>
-
-                <div class="clear"></div>
-                
-                <br />
-                
-                <div class="price">
-                    Amount Due: ${invoice.total_price}
-                </div>
-                
-                <tal:block repeat="record records">
-                    <div class="irecord">
-                        <iframe src="" data-src="${request.application_url}/record/${record.case}"></iframe>
-                        
-                        <div class="cost">
-                            <span>Record price: $${record.price}<span>
-                        </div>
-                    </div>
-                </tal:block>
-                <script type="text/javascript" >
-                    $('iframe').each(function(){
-                        resizeIframe(this,null,false);
-                    });
-                </script>
-                
-                <div class="price">
-                    Amount Due: ${invoice.total_price}
-                </div>
-                
-                <br />
-                
-                <div class="contact">
-                    <h3>Contact Us</h3>
-                    <div>If you have questions, would like to know more about your order or wish to cancel your order, please email <a href="mailto:archives@uwosh.edu">archives@uwosh.edu</a> </div>
-                </div>
-                
-            </div>
-        
-        
-        
-        </div>
-        
         <br />
-        
+        <br />
     
+        <div class="column">
+            <div id="invoice">
+            
+                <h2>Order Information</h2>
+                <div id="customer">
+                    <div class="left">
+                        <h3>Customer Information</h3>
+                        <label>Name:</label>${invoice.fullname}
+                        <br />
+                        <label>Phone:</label>${invoice.secure_phone}
+                        <br />
+                        <label>Email:</label>${invoice.secure_email}
+                        <br />
+                        <tal:block condition="invoice.secure_address">
+                        <label>Address:</label>***** ${invoice.secure_address}
+                        <br />
+                        </tal:block>
+                    </div>
+                    <div class="right">
+                        <h3>Order Status</h3>
+                        <label class="status">${invoice.get_status.status}</label>
+                    </div>
+
+                    <div class="clear"></div>
+                    
+                    <br />
+                    
+                    <div class="price">
+                        Amount Due: ${invoice.total_price}
+                    </div>
+                    
+                    <tal:block repeat="record records">
+                        <div class="irecord">
+                            <iframe src="" data-src="${request.application_url}/record/${record.case}"></iframe>
+                            
+                            <div class="cost">
+                                <span>Record price: $${record.price}<span>
+                            </div>
+                        </div>
+                    </tal:block>
+                    <script type="text/javascript" >
+                        $('iframe').each(function(){
+                            resizeIframe(this,null,false);
+                            autoResize(this,null,false);
+                        });
+                    </script>
+                    
+                    <div class="price">
+                        Amount Due: ${invoice.total_price}
+                    </div>
+                    
+                    <br />
+                    
+                    <div class="contact">
+                        <h3>Contact Us</h3>
+                        <div>If you have questions, would like to know more about your order or wish to cancel your order, please email <a href="mailto:archives@uwosh.edu">archives@uwosh.edu</a> </div>
+                    </div>
+                    
+                </div>
+            
+            
+            
+            </div>
+        </div>
         
         
     </tal:block>

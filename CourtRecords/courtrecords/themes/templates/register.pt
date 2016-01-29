@@ -3,6 +3,7 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     use-macro="load: master.pt">
     
+    
     <tal:block metal:fill-slot="css">
         <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
     </tal:block>
@@ -27,22 +28,20 @@
         </script>
     </tal:block>
     
+    <tal:block metal:fill-slot="breadcrumbs">
+        <div id="breadcrumbs">
+            <a href="http://plonedev.uwosh.edu/archives">Archives &amp; ARC</a>
+            <span>&#9002;</span>
+            <a href="${request.application_url}">Court Records</a>
+            <span>&#9002;</span>
+            <a href="${request.application_url}/register">Register</a>
+        </div>
+    </tal:block>
+    
+    
     
     <tal:block metal:fill-slot="content">
     
-        <h2 class="heading">
-            Court Records Registration
-        </h2>
-        <div id="breadcrumbs">
-            <a href="http://www.uwosh.edu/library">Polk Library</a>
-            <span>&rsaquo;</span>
-            <a href="http://www.uwosh.edu/archives">Archives</a>
-            <span>&rsaquo;</span>
-            <a href="${request.application_url}">Court Records</a>
-            <span>&rsaquo;</span>
-            <a href="">Registration</a>
-        </div>
-        
         <div id="issue" tal:condition="issue">
             ${issue}
         </div>

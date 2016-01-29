@@ -10,6 +10,7 @@
         <title>Project Home</title>
     </tal:block>
     
+    <link rel="stylesheet" type="text/css" href="http://plonedev.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
     <style> 
         html, body {
             background-color: transparent;
@@ -50,8 +51,7 @@
         }
         
         .record  div.left {
-            padding: 7px;
-            width: 300px;
+            width: 50%;
         }
 
         .record div.left label {
@@ -67,9 +67,7 @@
             background-color: #F3F3F3;
             border: 1px solid #dddddd;
             border-collapse: collapse;
-            margin: 7px 10px 0px 10px;
             text-align: left;
-            width: 300px;
         }
         .record table th{
             border-bottom: 1px solid #dddddd;
@@ -86,7 +84,6 @@
             padding: 10px 0px;
             text-align: right;
         }
-
         div.steps {
             background-color: #f8f8f8;
         }
@@ -97,7 +94,7 @@
 
 <body>
 
-    <div class="record">
+    <div class="record column">
         <div class="options" tal:condition="python: not mode or request.can_edit">
             
             <tal:block condition="request.can_edit">
@@ -111,92 +108,100 @@
             </a>
 
         </div>
-        <div class="left">
-            <div tal:condition="record.verses">
-                <label>Title:</label> 
-                <span>
-                    ${record.verses}
-                </span>
-            </div>
-            <div>
-                <label>Case Type:</label> 
-                <span>${record.case.ActionTypes.actiontype}</span>
-            </div>
-            <div>
-                <label>Court:</label> 
-                <span>${record.case.Courts.court}</span>
-            </div>
-            <div>
-                <label>Year:</label> 
-                <span tal:condition="record.case.Cases.year_text">
-                    ${record.case.Cases.year_text} 
-                </span>
-                <span tal:condition="not: record.case.Cases.year_text">
-                   --
-                </span>
-            </div>
-            <div>
-                <label>County:</label> 
-                <span>${record.case.Counties.county}</span>
-            </div>
-            <div class="hide">
-                <label>Archives:</label> 
-                <span>${record.case.Archives.name}</span>
-            </div>
-            <div tal:condition="record.case.Cases.notes">
-                <label>Notes:</label> 
-                <span>${record.case.Cases.notes}</span>
-            </div>
-            <div tal:condition="record.case.Containers.container">
-                <label>Container:</label> 
-                <span>${record.case.Containers.container}</span>
-            </div>
-            <div tal:condition="record.case.Cases.container_number">
-                <label>Container Number:</label> 
-                <span>${record.case.Cases.container_number}</span>
-            </div>
-            <div tal:condition="record.case.Cases.subset">
-                <label>Container Subset:</label> 
-                <span>${record.case.Cases.subset}</span>
-            </div>
-            <div tal:condition="record.case.Cases.case_number">
-                <label>Case Number:</label> 
-                <span>${record.case.Cases.case_number}</span>
-            </div>
-            <div>
-                <label>Call Number:</label> 
-                <span>${record.case.CallNumbers.call_number}</span>
-            </div>
-            <tal:if condition="mode">
-                <div>
-                    <label>Unique ID:</label> 
-                    <span>${record.case.Cases.id}</span>
+        <div class="col-50 col-t-100">
+            <div class="column-inner">
+                <div tal:condition="record.verses">
+                    <label>Title:</label> 
+                    <span>
+                        ${record.verses}
+                    </span>
                 </div>
-            </tal:if>
-            
+                <div>
+                    <label>Case Type:</label> 
+                    <span>${record.case.ActionTypes.actiontype}</span>
+                </div>
+                <div>
+                    <label>Court:</label> 
+                    <span>${record.case.Courts.court}</span>
+                </div>
+                <div>
+                    <label>Year:</label> 
+                    <span tal:condition="record.case.Cases.year_text">
+                        ${record.case.Cases.year_text} 
+                    </span>
+                    <span tal:condition="not: record.case.Cases.year_text">
+                       --
+                    </span>
+                </div>
+                <div>
+                    <label>County:</label> 
+                    <span>${record.case.Counties.county}</span>
+                </div>
+                <div class="hide">
+                    <label>Archives:</label> 
+                    <span>${record.case.Archives.name}</span>
+                </div>
+                <div tal:condition="record.case.Cases.notes">
+                    <label>Notes:</label> 
+                    <span>${record.case.Cases.notes}</span>
+                </div>
+                <div tal:condition="record.case.Containers.container">
+                    <label>Container:</label> 
+                    <span>${record.case.Containers.container}</span>
+                </div>
+                <div tal:condition="record.case.Cases.container_number">
+                    <label>Container Number:</label> 
+                    <span>${record.case.Cases.container_number}</span>
+                </div>
+                <div tal:condition="record.case.Cases.subset">
+                    <label>Container Subset:</label> 
+                    <span>${record.case.Cases.subset}</span>
+                </div>
+                <div tal:condition="record.case.Cases.case_number">
+                    <label>Case Number:</label> 
+                    <span>${record.case.Cases.case_number}</span>
+                </div>
+                <div>
+                    <label>Call Number:</label> 
+                    <span>${record.case.CallNumbers.call_number}</span>
+                </div>
+                <tal:if condition="mode">
+                    <div>
+                        <label>Unique ID:</label> 
+                        <span>${record.case.Cases.id}</span>
+                    </div>
+                </tal:if>
+                
+            </div>
         </div>
         
-        <table class="right">
-            <thead>
-                <tr>
-                    <th>Entity</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tal:block repeat="entity record.entities">
-                <tr>
-                    <td>${entity.Prefixs.prefix} 
-                        ${entity.Entities.firstname} 
-                        ${entity.Entities.middlename} 
-                        ${entity.Entities.entity} 
-                        ${entity.Suffixs.suffix}
-                    </td>
-                    <td>${entity.Roles.role}</td>
-                </tr>
-            </tal:block >
-            </tbody>
-        </table>
+        
+        <div class="col-50 col-t-100">
+            <div class="column-inner">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Entity</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tal:block repeat="entity record.entities">
+                        <tr>
+                            <td>${entity.Prefixs.prefix} 
+                                ${entity.Entities.firstname} 
+                                ${entity.Entities.middlename} 
+                                ${entity.Entities.entity} 
+                                ${entity.Suffixs.suffix}
+                            </td>
+                            <td>${entity.Roles.role}</td>
+                        </tr>
+                    </tal:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         
         <div class="clear"></div>
 

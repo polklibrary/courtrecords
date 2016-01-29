@@ -14,6 +14,13 @@ $(document).ready(function(){
 });
 
 
+function autoResize(obj, row, animate) {
+    $(window).resize(function() {
+        resizeIframe(obj, row, animate);
+    });
+}
+
+
 
 // Loads iframes and then resizes itself to fit
 function resizeIframe(obj, row, animate) {

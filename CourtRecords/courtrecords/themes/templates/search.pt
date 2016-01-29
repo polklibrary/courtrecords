@@ -29,6 +29,7 @@
         
             $(document).ready(function(){
                 $("#search-results-table").dataTable({
+                    "autoWidth": false,
                     'processing': true,
                     'serverSide': true,
                     'searching': false,
@@ -78,188 +79,199 @@
         </script>
     </tal:block>
      
-    <tal:block metal:fill-slot="content">
     
-    
-        <h2 class="heading">
-            Court Records Search
-        </h2>
+    <tal:block metal:fill-slot="breadcrumbs">
         <div id="breadcrumbs">
-            <a href="http://www.uwosh.edu/library">Polk Library</a>
-            <span>&rsaquo;</span>
-            <a href="http://www.uwosh.edu/archives">Archives</a>
-            <span>&rsaquo;</span>
+            <a href="http://plonedev.uwosh.edu/archives">Archives &amp; ARC</a>
+            <span>&#9002;</span>
             <a href="${request.application_url}">Court Records</a>
-            <span>&rsaquo;</span>
-            <a href="">Search</a>
+            <span>&#9002;</span>
+            <a href="${request.application_url}/search">Search</a>
         </div>
-        <div id="search" class="${mode}">
+    </tal:block>
+    
+    <tal:block metal:fill-slot="content">
+
+        <br />
+        <br />
         
-            <form method="post" action="${request.application_url}/search">
-                
-                <div class="search-bar left">
-                    <label for="entity" class="hide">Last Name / Institution name</label>
-                    <input id="entity" type="text" value="${entity}" name="entity" placeholder="Last name / Institution name" />
-
-                    <label for="first-name" class="hide">First Name</label>
-                    <input id="first-name" type="text" value="${firstname}" name="firstname" placeholder="First name" />
-                    <input id="search-mode" type="hidden" name="mode" value="basic" />
-
-                    <input class="button" type="submit" value="Search" name="search" />
-                    <a id="new-search" href="${request.application_url}/search">New Search</a>
-                    <span> | </span>
-                    <a id="advanced-search" name="advanced">Advanced Search</a>
-
-                    <div id="advanced-options">
-                        <div id="search-keywords">
-                            <label for="keywords" class="hide">Keywords</label>
-                            <input id="keywords" type="text" value="${keywords}" name="keywords" placeholder="Add keywords" />
-                        </div>
-                        
-                        <div class="search-add">
-                            <label>Refine Date Range <span>&#x25BE;</span></label>
-                            <div class="options">
-                                <select id="start_date" name="start_date" data-label="Start Date: ">
-                                    <option data-no-facet="1" value="0">Any</option>
-                                    <tal:block repeat="n python:range(earliest_recorded_date,last_recorded_date)">
-                                        <option value="${n}" tal:attributes="selected python: (n == start_date)">${n}</option>
-                                    </tal:block>
-                                </select>
-                                to
-                                <select id="end_date" name="end_date" data-label="End Date: ">
-                                    <option data-no-facet="1"  value="2050">Any</option>
-                                    <tal:block repeat="n python:range(earliest_recorded_date,last_recorded_date)">
-                                        <option value="${n}" tal:attributes="selected python: (n == end_date)">${n}</option>
-                                    </tal:block>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="search-add">
-                            <label>Refine counties <span>&#x25BE;</span></label>
-                            <div class="options">
-                                <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="counties" /> All </label>
-                                <br />
-                                <tal:block repeat="allcounties counties_list">
-                                    <label><input type="checkbox" value="${allcounties.id}" name="counties" tal:attributes="checked python: (allcounties.id in counties)" /> ${allcounties.county} </label>
-                                    <br />
-                                </tal:block>
-                            </div>
-                        </div>
-                        
-                        <div class="search-add">
-                            <label>Refine case types <span>&#x25BE;</span></label>
-                            <div class="options">
-                                <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="actiontypes"/> All </label>
-                                <br />
-                                <tal:block repeat="actions actiontypes_list">
-                                    <label><input type="checkbox" value="${actions.id}" name="actiontypes" tal:attributes="checked python: (actions.id in actiontypes)" /> ${actions.actiontype} </label>
-                                    <br />
-                                </tal:block>
-                            </div>
-                        </div>
-                        
-                        <div class="search-add enforced_hide">
-                            <label>Refine roles <span>&#x25BE;</span></label>
-                            <div class="options">
-                                <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="roles"/> All </label>
-                                <br />
-                                <tal:block repeat="allroles roles_list">
-                                    <label>
-                                        <input type="checkbox" value="${allroles.id}" name="roles" tal:attributes="checked python: (allroles.id in roles)"/>
-                                        ${allroles.role} 
-                                    </label>
-                                    <br />
-                                </tal:block>
-                            </div>
-                        </div>
-                                            
-                        <div class="search-add enforced_hide">
-                            <label>Refine archives <span>&#x25BE;</span></label>
-                            <div class="options">
-                                <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="archives"/> All </label>
-                                <br />
-                                <tal:block repeat="allarchs archives_list">
-                                    <label>
-                                        <input type="checkbox" value="${allarchs.id}" name="archives" tal:attributes="checked python: (allarchs.id in archives)"/>
-                                        ${allarchs.name} 
-                                    </label>
-                                    <br />
-                                </tal:block>
-                            </div>
-                        </div>
-                        
-                       <div class="search-add enforced_hide">
-                            <label>Refine courts <span>&#x25BE;</span></label>
-                            <div class="options">
-                                <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="courts"/> All </label>
-                                <br />
-                                <tal:block repeat="allcourts courts_list">
-                                    <label>
-                                        <input type="checkbox" value="${allcourts.id}" name="courts" tal:attributes="checked python: (allcourts.id in courts)"/>
-                                        ${allcourts.court} 
-                                    </label>
-                                    <br />
-                                </tal:block>
-                            </div>
-                        </div>      
-                    </div>                  
+        <div class="column">
+        
+            <div id="search" class="${mode}">
+                <form method="post" action="${request.application_url}/search">
                     
-                </div>                
-                
-                <div class="search-cart right">
-                    <a href="${request.application_url}/basket">
-                        <div class="left"  id="cart-count">
-                            <span>0</span>
-                            <div>Items</div>
+                    <div class="search-bar col-80">
+                        
+                        <div class="col-50">
+                            <label for="entity" class="hide">Last Name / Institution name</label>
+                            <input id="entity" type="text" value="${entity}" name="entity" placeholder="Last name / Institution name" />
+
+                            <label for="first-name" class="hide">First Name</label>
+                            <input id="first-name" type="text" value="${firstname}" name="firstname" placeholder="First name" />
+                            <input id="search-mode" type="hidden" name="mode" value="basic" />
+
+                            <input class="button" type="submit" value="Search" name="search" />
                         </div>
-                        <img class="left" src="${request.static_url('courtrecords:themes/images/shopping-cart-128.png')}" alt="Shopping Cart" />
+                        
+                        <div class="col-25 centerize">
+                            <a id="new-search" href="${request.application_url}/search">New Search</a>
+                            <span> | </span>
+                            <a id="advanced-search" name="advanced">Advanced Search</a>
+                        </div>
+                        
+                        <div class="clear"></div>
+                        
+
+                        <div id="advanced-options">
+                            <div id="search-keywords" class="col-20">
+                                <label for="keywords" class="hide">Keywords</label>
+                                <input id="keywords" type="text" value="${keywords}" name="keywords" placeholder="Add keywords" />
+                            </div>
+                            
+                            <div class="search-add col-20">
+                                <label>Refine date range <span>&#x25BE;</span></label>
+                                <div class="options">
+                                    <select id="start_date" name="start_date" data-label="Start Date: ">
+                                        <option data-no-facet="1" value="0">Any</option>
+                                        <tal:block repeat="n python:range(earliest_recorded_date,last_recorded_date)">
+                                            <option value="${n}" tal:attributes="selected python: (n == start_date)">${n}</option>
+                                        </tal:block>
+                                    </select>
+                                    to
+                                    <select id="end_date" name="end_date" data-label="End Date: ">
+                                        <option data-no-facet="1"  value="2050">Any</option>
+                                        <tal:block repeat="n python:range(earliest_recorded_date,last_recorded_date)">
+                                            <option value="${n}" tal:attributes="selected python: (n == end_date)">${n}</option>
+                                        </tal:block>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="search-add col-20">
+                                <label>Refine counties <span>&#x25BE;</span></label>
+                                <div class="options">
+                                    <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="counties" /> All </label>
+                                    <br />
+                                    <tal:block repeat="allcounties counties_list">
+                                        <label><input type="checkbox" value="${allcounties.id}" name="counties" tal:attributes="checked python: (allcounties.id in counties)" /> ${allcounties.county} </label>
+                                        <br />
+                                    </tal:block>
+                                </div>
+                            </div>
+                            
+                            <div class="search-add col-20">
+                                <label>Refine case types <span>&#x25BE;</span></label>
+                                <div class="options">
+                                    <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="actiontypes"/> All </label>
+                                    <br />
+                                    <tal:block repeat="actions actiontypes_list">
+                                        <label><input type="checkbox" value="${actions.id}" name="actiontypes" tal:attributes="checked python: (actions.id in actiontypes)" /> ${actions.actiontype} </label>
+                                        <br />
+                                    </tal:block>
+                                </div>
+                            </div>
+                            
+                            <div class="search-add col-20 enforced_hide">
+                                <label>Refine roles <span>&#x25BE;</span></label>
+                                <div class="options">
+                                    <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="roles"/> All </label>
+                                    <br />
+                                    <tal:block repeat="allroles roles_list">
+                                        <label>
+                                            <input type="checkbox" value="${allroles.id}" name="roles" tal:attributes="checked python: (allroles.id in roles)"/>
+                                            ${allroles.role} 
+                                        </label>
+                                        <br />
+                                    </tal:block>
+                                </div>
+                            </div>
+                                                
+                            <div class="search-add col-20 enforced_hide">
+                                <label>Refine archives <span>&#x25BE;</span></label>
+                                <div class="options">
+                                    <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="archives"/> All </label>
+                                    <br />
+                                    <tal:block repeat="allarchs archives_list">
+                                        <label>
+                                            <input type="checkbox" value="${allarchs.id}" name="archives" tal:attributes="checked python: (allarchs.id in archives)"/>
+                                            ${allarchs.name} 
+                                        </label>
+                                        <br />
+                                    </tal:block>
+                                </div>
+                            </div>
+                            
+                           <div class="search-add col-20 enforced_hide">
+                                <label>Refine courts <span>&#x25BE;</span></label>
+                                <div class="options">
+                                    <label><input class="cb-all" data-no-facet="1" type="checkbox" value="0" name="courts"/> All </label>
+                                    <br />
+                                    <tal:block repeat="allcourts courts_list">
+                                        <label>
+                                            <input type="checkbox" value="${allcourts.id}" name="courts" tal:attributes="checked python: (allcourts.id in courts)"/>
+                                            ${allcourts.court} 
+                                        </label>
+                                        <br />
+                                    </tal:block>
+                                </div>
+                            </div>      
+                        </div>                  
+                        
+                    </div>                
+                    
+                    <div class="search-cart col-10 right">
+                        <a href="${request.application_url}/basket">
+                            <span id="cart-count">0</span> 
+                            <span id="cart-items">Items</span>
+                            <img src="${request.static_url('courtrecords:themes/images/shopping-cart-128.png')}" alt="Shopping Cart" />
+                        </a>
+                    </div>
+                    
+                    <div class="clear"></div>
+      
+                </form>
+            </div>
+        
+        
+            <tal:block condition="mode">
+                <div id="facets">Refined By: </div>
+                <div id="facet-list" class="left hide-1024"></div>
+                <div id="search-results" class="left">
+                    <table id="search-results-table" class="tablesorter">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Last</th>
+                                <th>Middle</th>
+                                <th>First</th>
+                                <th>Role</th>
+                                <th>Record Date</th>
+                                <th>County</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="checkout-link" class="buttons right hide">
+                    <a class="button" href="${request.application_url}/basket">
+                        Proceed to checkout
                     </a>
                 </div>
-                
                 <div class="clear"></div>
-  
-            </form>
+            </tal:block>
+            
+            <tal:block condition="not: mode">
+                <div id="search-no-results">
+                    After search records will display here
+                </div>
+            </tal:block>
+            
+            <tal:block condition="nothing">
+                <div id="search-no-results">
+                    No records found
+                </div>
+            </tal:block>
         </div>
-        
-        <tal:block condition="mode">
-            <div id="facets">Refined By: </div>
-            <div id="facet-list" class="left"></div>
-            <div id="search-results" class="left">
-                <table id="search-results-table" class="tablesorter">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Last</th>
-                            <th>Middle</th>
-                            <th>First</th>
-                            <th>Role</th>
-                            <th>Record Date</th>
-                            <th>County</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <div id="checkout-link" class="buttons right hide">
-                <a class="button" href="${request.application_url}/basket">
-                    Proceed to checkout
-                </a>
-            </div>
-            <div class="clear"></div>
-        </tal:block>
-        
-        <tal:block condition="not: mode">
-            <div id="search-no-results">
-                After search records will display here
-            </div>
-        </tal:block>
-        
-        <tal:block condition="nothing">
-            <div id="search-no-results">
-                No records found
-            </div>
-        </tal:block>
         
         
         
