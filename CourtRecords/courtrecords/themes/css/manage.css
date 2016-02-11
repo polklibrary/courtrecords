@@ -92,6 +92,14 @@ h2.heading {
 }
 .button.purple:hover { background-color: #8A48AE; border-color: #8043A1; }
 
+.button.black {
+   background-color: #333;
+   border-color: #222;
+}
+.button.black:hover { background-color: #333; border-color: #222; animation: glow 1s ease-in-out infinite;}
+@keyframes glow {
+  50% { background-color: #D2322D; border-color: #AC2925; }
+}
 
 .button-pagination {
     padding: 10px 20px;

@@ -30,6 +30,7 @@ class ManageDataAdd(ManageData):
             transaction.commit()
             if 'form.submit' in self.request.params:
                 return HTTPFound(location=route_url('manage_list_data', self.request, table=table))
+                
             
         html = self._element_generator(table_class.__scaffold__, table_class())
         self.set('form',html)

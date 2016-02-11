@@ -242,8 +242,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Last</th>
-                                <th>Middle</th>
                                 <th>First</th>
+                                <th>Middle</th>
                                 <th>Role</th>
                                 <th>Record Date</th>
                                 <th>County</th>

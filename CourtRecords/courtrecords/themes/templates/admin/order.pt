@@ -111,6 +111,7 @@
                 <table id="customer-order-table" class="tablesorter dt-generic-style">
                     <thead>
                         <tr>
+                            <th>Case #</th>
                             <th>Entity</th>
                             <th>County</th>
                             <th>Year</th>
@@ -123,6 +124,9 @@
                     </thead>
                     <tbody>
                         <tr class="" tal:repeat="record records" onclick="window.open('${request.application_url}/manage/records/${record.case.Cases.id}')">
+                            <td>
+                                ${record.case.Cases.case_number}
+                            </td>
                             <td>
                                 ${record.case.Entities.firstname} ${record.case.Entities.middlename} ${record.case.Entities.entity} 
                             </td>

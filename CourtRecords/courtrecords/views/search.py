@@ -167,8 +167,8 @@ class Search(BaseView):
             results['data'].append(
                 [obj.Entities.id,
                  obj.Entities.entity,
-                 obj.Entities.middlename,
                  obj.Entities.firstname,
+                 obj.Entities.middlename,
                  obj.Roles.role,
                  obj.Cases.year,
                  obj.Counties.county,

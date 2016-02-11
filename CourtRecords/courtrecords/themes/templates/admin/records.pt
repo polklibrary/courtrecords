@@ -31,12 +31,7 @@
                     StickyFields.load_any_stickies();
                 }
                 
-                $('#manage-records-table input[type="button"]').click(function(){
-                    var url = $(this).attr('data-url');
-                    $.post(url, function(data) {
-                        console.log(data);
-                    });
-                });
+
             
                 var new_rows = 0;
                 $('#add-row').click(function(){
@@ -65,6 +60,11 @@
     </tal:block>
      
     <tal:block metal:fill-slot="content">
+        
+
+        <div class="button-pagination" tal:condition="case_id == 'new'">
+            <a class="button prev" href="${request.application_url}/manage/records/${lastentry}">Last Record Added</a>
+        </div>
         
         <div class="button-pagination" tal:condition="case">
             <a class="button prev" href="${request.application_url}/manage/records/previous?case=${case.Cases.id}&call_number=${case.Cases.call_number}">Previous Record</a>
@@ -267,7 +267,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input class="button red warning" type="button" data-url="${request.application_url}/manage/data/Entities/delete/${entity.Entities.id}?back=${request.url}" value="Remove" />
+                                <a class="button red warning" href="${request.application_url}/manage/data/Entities/delete/${entity.Entities.id}?back=${request.url}">Remove</a>
                             </td>
                         </tr>
                     </tbody>
@@ -282,10 +282,14 @@
             </div>
 
             <div class="buttons">
+                <a class="button black warning left" href="${request.application_url}/manage/data/Cases/delete/${case.Cases.id}?back=${request.application_url}/manage/cases">Delete Record</a>
+                
+                <input type="hidden" value="${request.url}" name="edit.Form.last.entry" />
                 <input class="button purple manage-quick-search-button" type="button" value="Quick Search" />
                 <input class="button" type="submit" value="Save Record" name="edit.Form.submit.save" />
                 <input class="button" type="submit" value="Save Record (Add another)" name="edit.Form.submit.savenext" />
                 <a class="button red" href="${request.application_url}/manage/cases">Cancel</a>
+                            
             </div>
         </form>
 

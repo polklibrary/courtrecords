@@ -36,14 +36,17 @@
                         
                     for(var i in data) {
 
-                        var tr = $('<tr>').click(function(){
-                            window.parent.location.href = window.domain + '/manage/records/' + data[i].case.id;
+                        console.log(data[i].case.id);
+                        var tr = $('<tr>').attr('data-id',data[i].case.id).click(function(){
+                            console.log(data[i].case.id);
+                            window.parent.location.href = window.domain + '/manage/records/' + $(this).attr('data-id');
                         });
                         var entity = $('<td>').append( data[i].entity.entity + ', ' + data[i].entity.firstname + ' ' + data[i].entity.middlename);
                         var year = $('<td>').append( data[i].case.year_text);
                         var county = $('<td>').append( data[i].county.county);
                         var actiontype = $('<td>').append( data[i].actiontype.actiontype);
-                        $(tr).append(entity).append(year).append(county).append(actiontype);
+                        var id = $('<td>').append(data[i].case.id);
+                        $(tr).append(entity).append(year).append(county).append(actiontype).append(id);
                         
                         $('#quick-search-results table tbody').append(tr);
 
@@ -112,6 +115,7 @@
                     <th>Year</th>
                     <th>County</th>
                     <th>ActionType</th>
+                    <th>ID</th>
                 </tr>
             </thead>
             <tbody>

@@ -49,6 +49,13 @@ class ManageRecords(ManageData):
         if case_id != 'new':
             case_id = int(case_id)
         
+        
+        # Add last entry for new entries
+        self.set('lastentry',case_id)
+        lastcase = Cases.load(order='id desc')
+        if lastcase:
+            self.set('lastentry',lastcase.id)
+        
         # Handle Saving
         if 'edit.Form.submit.save' in self.request.params or 'edit.Form.submit.savenext' in self.request.params:
             self._save(case_id)
