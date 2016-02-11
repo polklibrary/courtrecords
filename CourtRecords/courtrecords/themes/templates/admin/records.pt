@@ -282,7 +282,7 @@
             </div>
 
             <div class="buttons">
-                <a class="button black warning left" href="${request.application_url}/manage/data/Cases/delete/${case.Cases.id}?back=${request.application_url}/manage/cases">Delete Record</a>
+                <a tal:condition="case" class="button black warning left" href="${request.application_url}/manage/data/Cases/delete/${case.Cases.id}?back=${request.application_url}/manage/cases">Delete Record</a>
                 
                 <input type="hidden" value="${request.url}" name="edit.Form.last.entry" />
                 <input class="button purple manage-quick-search-button" type="button" value="Quick Search" />
