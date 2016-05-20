@@ -25,7 +25,8 @@ class ManageEntities(BaseView):
                           'entities.firstname',
                           'entities.suffix',
                           'entities.alternatename',
-                          'entities.role']
+                          'entities.role'
+                          ]
         
         # Determine Order
         order_index = int(self.request.params.get('order[0][column]', 0))
@@ -56,7 +57,8 @@ class ManageEntities(BaseView):
                 obj.Entities.firstname,
                 obj.Suffixs.suffix,
                 obj.Entities.alternatename,
-                obj.Roles.role
+                obj.Roles.role,
+                '<a class="button red warning" href="' + self.request.application_url + '/manage/data/Entities/delete/' + str(obj.Entities.id) + '?back=' + self.request.application_url + '/manage/entities">Delete</a>'
             ])
         
         return results

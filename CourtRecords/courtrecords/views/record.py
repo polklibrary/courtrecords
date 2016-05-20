@@ -40,8 +40,10 @@ class Record(BaseView):
             'price': '${:,.2f}'.format( float(entities[0].Roles.price) ),
         }
         self.set('record', record)
+
         
         return self.response
+    
     
     
     

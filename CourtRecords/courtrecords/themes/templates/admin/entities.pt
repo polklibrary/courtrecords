@@ -12,6 +12,7 @@
     </tal:block>
     
     <tal:block metal:fill-slot="js">
+        <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/scaffold.js')}"></script>
         <script>
 
             $(document).ready(function(){
@@ -31,12 +32,14 @@
                         var uid = $.trim($(row).find('td:nth-child(1)').text());
                         var id = $.trim($(row).find('td:nth-child(2)').text());
                         $(row).mousedown(function(e){
-                            if( (e.which == 1) ) 
-                                document.location.href = '${request.application_url}/manage/records/' + id;
-                            if( (e.which == 2) ) {
-                                var win = window.open('${request.application_url}/manage/records/' + id, '_blank');
-                                win.focus();
-                            }
+                        
+                            if (! $(e.target).is('a'))
+                                if( (e.which == 1) ) 
+                                    document.location.href = '${request.application_url}/manage/records/' + id;
+                                if( (e.which == 2) ) {
+                                    var win = window.open('${request.application_url}/manage/records/' + id, '_blank');
+                                    win.focus();
+                                }
                         });
                         
                         // Checks record issues
@@ -73,6 +76,7 @@
                         <th>Suffix</th>
                         <th>Alternate Name</th>
                         <th>Role</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
             </table>
