@@ -97,13 +97,14 @@ class ManageRecords(ManageData):
         
         
         #${request.application_url}/manage/data/Entities/delete/${entity.Entities.id}?back=${request.url}
-        
-        entity_base_url = self.request.application_url + '/manage/data/Entities/delete/'
-        case_base_url = self.request.application_url + '/manage/data/Cases/delete/'
-        delete_url = case_base_url + str(case.Cases.id) + '?back='
-        for e in entities:
-            delete_url += entity_base_url + str(e.Entities.id)  + '?back='
-        delete_url += self.request.application_url + '/manage/cases' # Back to base
+        delete_url = ''
+        if case:
+            entity_base_url = self.request.application_url + '/manage/data/Entities/delete/'
+            case_base_url = self.request.application_url + '/manage/data/Cases/delete/'
+            delete_url = case_base_url + str(case.Cases.id) + '?back='
+            for e in entities:
+                delete_url += entity_base_url + str(e.Entities.id)  + '?back='
+            delete_url += self.request.application_url + '/manage/cases' # Back to base
         self.set('delete_url', delete_url)
         
         
