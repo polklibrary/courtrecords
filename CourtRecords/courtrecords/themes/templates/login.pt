@@ -6,7 +6,7 @@
     
     <tal:block metal:fill-slot="breadcrumbs">
         <div id="breadcrumbs">
-            <a href="http://plonedev.uwosh.edu/archives">Archives &amp; ARC</a>
+            <a href="http://www.uwosh.edu/archives">Archives &amp; ARC</a>
             <span>&#9002;</span>
             <a href="${request.application_url}">Court Records</a>
             <span>&#9002;</span>

@@ -12,10 +12,10 @@
         <title>UW Oshkosh Archives - Court Records</title>
     </tal:block>  
     
-    <link rel="stylesheet" type="text/css" href="http://plonedev.uwosh.edu/archives/++theme++uwosh/css/uwosh.css" />
-    <link rel="stylesheet" type="text/css" href="http://plonedev.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
-    <link rel="stylesheet" type="text/css" href="http://plonedev.uwosh.edu/archives/++theme++uwosh/css/archives.css" />
-    <link data-bundle="polklibrary-slider" href="http://plonedev.uwosh.edu/archives/++resource++polklibraryslider/slider.css?version=2015-10-20 00:00:00.000001" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/uwosh.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/archives.css" />
+    <link data-bundle="polklibrary-slider" href="http://www.uwosh.edu/archives/++resource++polklibraryslider/slider.css?version=2015-10-20 00:00:00.000001" type="text/css" rel="stylesheet">
         
     
     <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/style.css')}" />
@@ -35,9 +35,9 @@
         var domain = '${request.application_url}';
     </script>
     
-    <script src="http://plonedev.uwosh.edu/archives/++theme++uwosh/js/archives.js" type="text/javascript"></script>
-    <script src="http://plonedev.uwosh.edu/archives/++theme++uwosh/js/mobile.js" type="text/javascript"></script>
-    <script src="http://plonedev.uwosh.edu/archives/++resource++polklibraryslider/slider.js" type="text/javascript"></script>
+    <script src="http://www.uwosh.edu/archives/++theme++uwosh/js/archives.js" type="text/javascript"></script>
+    <script src="http://www.uwosh.edu/archives/++theme++uwosh/js/mobile.js" type="text/javascript"></script>
+    <script src="http://www.uwosh.edu/archives/++resource++polklibraryslider/slider.js" type="text/javascript"></script>
         
     <tal:block metal:define-slot="css" tal:content="nothing">
        Extendable CSS Slot
@@ -48,7 +48,7 @@
   
 </head>
 
-<body data-portal-url="http://plonedev.uwosh.edu/archives" data-base-url="http://plonedev.uwosh.edu/archives" >
+<body data-portal-url="http://www.uwosh.edu/archives" data-base-url="http://www.uwosh.edu/archives" >
 
 
 
@@ -91,29 +91,29 @@
                 <div class="column">
                     <div class="col-100">
                         <a href="http://www.uwosh.edu" id="portal-logo">
-                            <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/wordmark-large.png" alt="UW Oshkosh" title="UW Oshkosh" class="mobile-t-img">
+                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/wordmark-large.png" alt="UW Oshkosh" title="UW Oshkosh" class="mobile-t-img">
                         </a>
                         <div class="col-80 col-t-40 dropdowns" id="arch-top-navigation">
                             <div data-mobile="toggle-popup-children-2" class="hide-1024" id="arch-top-navigation-content">
                                 <ul id="portal-globalnav" class="plone-nav plone-navbar-nav">
                                     <li class="selected" id="portaltab-index_html">
-                                        <a title="" href="http://plonedev.uwosh.edu/archives">Archives &amp; ARC</a>
+                                        <a title="" href="http://www.uwosh.edu/archives">Archives &amp; ARC</a>
                                     </li>
                                     <li id="portaltab-genealogy">
-                                        <a title="" href="http://plonedev.uwosh.edu/archives/genealogy">Genealogy</a>
+                                        <a title="" href="http://www.uwosh.edu/archives/genealogy">Genealogy</a>
                                     </li>
                                     <li id="portaltab-historical-research">
-                                        <a title="" href="http://plonedev.uwosh.edu/archives/historical-research">Historical Research</a>
+                                        <a title="" href="http://www.uwosh.edu/archives/historical-research">Historical Research</a>
                                     </li>
                                     <li id="portaltab-university-history">
-                                        <a title="" href="http://plonedev.uwosh.edu/archives/university-history">University History</a>
+                                        <a title="" href="http://www.uwosh.edu/archives/university-history">University History</a>
                                     </li>
                                     <li id="portaltab-records-management">
-                                        <a title="" href="http://plonedev.uwosh.edu/archives/records-management">Records Management</a>
+                                        <a title="" href="http://www.uwosh.edu/archives/records-management">Records Management</a>
                                     </li>
                                     <li id="arch-search">
-                                        <a href="http://plonedev.uwosh.edu/archives/search" title="Website Search"></a> &nbsp;
-                                        <form method="post" action="http://plonedev.uwosh.edu/archives/search">
+                                        <a href="http://www.uwosh.edu/archives/search" title="Website Search"></a> &nbsp;
+                                        <form method="post" action="http://www.uwosh.edu/archives/search">
                                             <input type="text" name="" placeholder="Search this website.." value="">
                                             <input type="submit" name="SearchableText" value="" class="search">
                                         </form>
@@ -125,7 +125,7 @@
                             </span>
                         </div>
                         <a href="http://www.uwosh.edu/archives" id="arch-logo">
-                            <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/archives.png" alt="Archives &amp; ARC" title="Archives &amp; ARC" class="mobile-t-img">
+                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/archives.png" alt="Archives &amp; ARC" title="Archives &amp; ARC" class="mobile-t-img">
                         </a>
                         <div class="col-100" id="arch-slider">
                             <section role="section" data-loaded="1" class="portlet portletSlider">
@@ -138,7 +138,7 @@
                                             <div class="pl-slide-title"></div>
                                             <div class="pl-slide-description"></div>
                                         </div>
-                                        <img alt="generalimage1.jpg" title="" src="http://plonedev.uwosh.edu/archives/slider-images/generalimage1.jpg/@@images/image" class="pl-slide-image" style="position: relative; display: block;">
+                                        <img alt="generalimage1.jpg" title="" src="http://www.uwosh.edu/archives/slider-images/generalimage1.jpg/@@images/image" class="pl-slide-image" style="position: relative; display: block;">
                                     </div>
                                     <script type="text/javascript">
                                         PolkSliderLoad();
@@ -174,25 +174,25 @@
                 <div class="col-25 col-t-50">
                     <div class="box archives-gray column-outer">
                         <div class="hours"></div>
-                        <a href="http://plonedev.uwosh.edu/archives/hours" class="plain">Hours</a>
+                        <a href="http://www.uwosh.edu/archives/hours" class="plain">Hours</a>
                     </div>
                 </div>
                 <div class="col-25 col-t-50">
                     <div class="box archives-gray column-outer">
                         <div class="contact"></div>
-                        <a href="http://plonedev.uwosh.edu/archives/contact" class="plain">Contact</a>
+                        <a href="http://www.uwosh.edu/archives/contact" class="plain">Contact</a>
                     </div>
                 </div>
                 <div class="col-25 col-t-50">
                     <div class="box archives-gray column-outer">
                         <div class="directions"></div>
-                        <a href="http://plonedev.uwosh.edu/archives/directions" class="plain">Directions</a>
+                        <a href="http://www.uwosh.edu/archives/directions" class="plain">Directions</a>
                     </div>
                 </div>
                 <div class="col-25 col-t-50">
                     <div class="box archives-gray column-outer">
                         <div class="about"></div>
-                        <a href="http://plonedev.uwosh.edu/archives/about" class="plain">About</a>
+                        <a href="http://www.uwosh.edu/archives/about" class="plain">About</a>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -213,7 +213,7 @@
             <div class="col-100">
                 <div class="col-33" id="campus-map">
                     <a href="http://www.uwosh.edu/go/directions" target="_blank">
-                    <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/wismap-color.png" class="wismap left desaturate" alt="Map of Wisconsin">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/wismap-color.png" class="wismap left desaturate" alt="Map of Wisconsin">
                     </a>
                     <div>
                         <span class="copyright">&copy;<span class="populate-year">2015</span> UW Board of Regents</span>
@@ -240,34 +240,34 @@
                     </ul>
                     <div>
                         <a href="http://www.uwosh.edu/imc/web-new-media/mobile">
-                            <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/mobileapp-color.png" class="desaturate" alt="UW Oshkosh mobile app icon">
+                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/mobileapp-color.png" class="desaturate" alt="UW Oshkosh mobile app icon">
                             <div>Download UW <br> Oshkosh's Mobile App</div>
                         </a>
                         <a class="pull-left" href="http://emergency.uwosh.edu/">
-                            <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/emergency-color.png" class="desaturate" alt="Emergency and Safety Information icon">
+                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/emergency-color.png" class="desaturate" alt="Emergency and Safety Information icon">
                             <div>Emergency and Safety <br> Information</div>
                         </a>
                     </div>
                 </div>
                 <div class="col-33" id="social-links">
                     <ul class="nostyle no-mar-pad">
-                        <li><a href="https://www.facebook.com/uwoshkosh" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-facebook.png" class="desaturate" alt="Facebook logo"></a></li>
-                        <li><a href="https://twitter.com/uwoshkosh" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-twitter.png" class="desaturate" alt="Twitter logo"></a></li>
-                        <li><a href="http://instagram.com/uwoshkosh" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-instagram.png" class="desaturate" alt="Instagram logo"></a></li>
-                        <li><a href="http://www.youtube.com/uwosh" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-youtube.png" class="desaturate" alt="YouTube logo"></a></li>
-                        <li><a href="http://www.linkedin.com/edu/school?id=19693" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-linkedin.png" class="desaturate" alt="LinkedIn logo"></a></li>
-                        <li><a href="http://www.pinterest.com/uwoadmissions" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-pinterest.png" class="desaturate" alt="Pinterest logo"></a></li>
-                        <li><a href="http://www.flickr.com/photos/uwoshkosh/sets/" target="_blank"><img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/icon-flickr.png" class="desaturate" alt="Flickr logo"></a></li>
+                        <li><a href="https://www.facebook.com/uwoshkosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-facebook.png" class="desaturate" alt="Facebook logo"></a></li>
+                        <li><a href="https://twitter.com/uwoshkosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-twitter.png" class="desaturate" alt="Twitter logo"></a></li>
+                        <li><a href="http://instagram.com/uwoshkosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-instagram.png" class="desaturate" alt="Instagram logo"></a></li>
+                        <li><a href="http://www.youtube.com/uwosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-youtube.png" class="desaturate" alt="YouTube logo"></a></li>
+                        <li><a href="http://www.linkedin.com/edu/school?id=19693" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-linkedin.png" class="desaturate" alt="LinkedIn logo"></a></li>
+                        <li><a href="http://www.pinterest.com/uwoadmissions" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-pinterest.png" class="desaturate" alt="Pinterest logo"></a></li>
+                        <li><a href="http://www.flickr.com/photos/uwoshkosh/sets/" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-flickr.png" class="desaturate" alt="Flickr logo"></a></li>
                     </ul>
                     <div>
                         <a href="http://www.collegeportraits.org/WI/UW-Oshkosh" target="_blank">
-                        <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/college-portrait.png" alt="College Portrait logo">
+                        <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/college-portrait.png" alt="College Portrait logo">
                         </a>
                         <a href="http://www.ncahlc.org/?option=com_directory&amp;Action=ShowBasic&amp;instid=2030" target="_blank">
-                        <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/hlc.png" alt="Higher Learning Commission logo">
+                        <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/hlc.png" alt="Higher Learning Commission logo">
                         </a>
                         <a href="http://www.wisconsin.edu/" target="_blank">
-                        <img src="http://plonedev.uwosh.edu/archives/++theme++uwosh/images/uw-system.png" alt="University of Wisconsin System logo">
+                        <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uw-system.png" alt="University of Wisconsin System logo">
                         </a>
                     </div>
                 </div>

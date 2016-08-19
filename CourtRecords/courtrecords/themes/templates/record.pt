@@ -10,7 +10,7 @@
         <title>Project Home</title>
     </tal:block>
     
-    <link rel="stylesheet" type="text/css" href="http://plonedev.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
     <style> 
         html, body {
             background-color: transparent;
