@@ -37,13 +37,13 @@
                     $('#step2').show();
                 });
                 $('#checkout-mail,#checkout-digital').change(function(){
-                    if ($('#checkout-mail').is(':checked')) {
-                        $('#toggle-address').show();
-                        $('#customer-address, #customer-address2').prop('required',true);
-                    } else {
-                        $('#toggle-address').hide();
-                        $('#customer-address, #customer-address2').prop('required',false);
-                    }    
+                    //if ($('#checkout-mail').is(':checked')) {
+                    //    $('#toggle-address').show();
+                    //    $('#customer-address, #customer-address2').prop('required',true);
+                    //} else {
+                    //    $('#toggle-address').hide();
+                    //    $('#customer-address, #customer-address2').prop('required',false);
+                    //}    
                     
                     $('#step3').show();
                 });
@@ -158,16 +158,15 @@
                     <br />
                     <br />
                     
-                    <div id="toggle-address" class="hide">
-                        <label for="customer-address">Address: </label> 
-                        <input id="customer-address" type="text" name="customer.address" /> <span class="required">* required</span>                   
-                        <br />
-                        <label for="customer-address2">City, State and Zip: </label> 
-                        <input id="customer-address2" type="text" name="customer.address2" /> <span class="required">* required</span>
-                        
-                        <br />
-                        <br />
-                    </div>
+                    <label for="customer-address">Address: </label> 
+                    <input id="customer-address" type="text" name="customer.address" required="true" /> <span class="required">* required</span>                   
+                    <br />
+                    <br />
+                    <label for="customer-address2">City, State and Zip: </label> 
+                    <input id="customer-address2" type="text" name="customer.address2" required="true" /> <span class="required">* required</span>
+                    
+                    <br />
+                    <br />
                     
                     <label for="customer-phone">Phone number:</label> <input id="customer-phone" type="text" name="customer.phone" value="" /> 
                     
