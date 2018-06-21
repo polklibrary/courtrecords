@@ -1,6 +1,6 @@
 
 from courtrecords.security.acl import ACL
-from courtrecords.models import DBSession,Cases,Entities,Invoices,Roles,Counties,ActionTypes,Archives,Statuses,Courts,Prefixs,Suffixs,Config
+from courtrecords.models import DBSession,Cases,Entities,Invoices,Roles,CallNumbers,Counties,ActionTypes,Archives,Statuses,Courts,Prefixs,Suffixs,Config
 from courtrecords.utilities.utility import Result2Dict,Results2Dict
 from courtrecords.utilities.validators import Validators
 from courtrecords.views import BaseView
@@ -29,18 +29,23 @@ class Basket(BaseView):
                 results = []
                 price, total_price = 0.0, 0.0
                 
+                show_divorce_message = False
                 for k,v in items.items():
                 
-                    entity = DBSession.query(Entities,Roles).filter(Entities.case_id==int(v)).filter(Entities.role==Roles.id).first()
-                    price = float(entity.Roles.price)
+                    entity = DBSession.query(Entities,Cases,Roles,CallNumbers).filter(Entities.case_id==int(v)).filter(Entities.role==Roles.id).filter(Entities.case_id==Cases.id).filter(Cases.call_number==CallNumbers.id).first()
+                    price = float(entity.CallNumbers.price)
                     total_price += price
                     
                     results.append({
                         'id': v,
                         'price': '${:,.2f}'.format(price),
                     })
+                    
+                    if entity.Cases.actiontype == 17: # hardcoded but eh... very unlikely to change
+                        show_divorce_message = True
 
                 self.set('records', results)
+                self.set('show_divorce_message', show_divorce_message)
                 self.set('total_price', '${:,.2f}'.format(total_price))
                 self.set('message_before_ordering', Config.get('message_before_ordering'))
         
@@ -61,6 +66,7 @@ class Basket(BaseView):
             checkout = self.request.params.getall('customer.checkout')
             deliver_digitally = False
             deliver_physically = False
+            divorces_only = False
             
             # Delivery Options
             for option in checkout:
@@ -68,6 +74,8 @@ class Basket(BaseView):
                     deliver_digitally = True
                 if option == 'physically':
                     deliver_physically = True
+                if option == 'divorces-only':
+                    divorces_only = True
                     
             # Prep Orders
             orders = []
@@ -78,14 +86,16 @@ class Basket(BaseView):
                 e = Entities.load(case_id=int(record))
                 r = Roles.load(id=e.role)
                 l = Archives.load(id=c.archive)
+                cn = CallNumbers.load(id=c.call_number)
                 
                 location_emails[l.email] = l.email
-                total_price += float(r.price)
+                total_price += float(cn.price)
                 
-                orders.append({'case':int(c.id), 'price' : r.price, 'location':int(l.id)})
+                orders.append({'case':int(c.id), 'price' : cn.price, 'location':int(l.id)})
                 
             invoice = Invoices(fullname=fullname, email=email, address=address, county_state_zip=address2, phone=phone, records=orders, 
-                               agreement_accepted=agreement, deliver_digitally=deliver_digitally, deliver_physically=deliver_physically,
+                               agreement_accepted=agreement, deliver_digitally=deliver_digitally, deliver_physically=deliver_physically, 
+                               divorces_only=divorces_only,
                                total_price='${:,.2f}'.format(total_price))
             invoice.insert(self.request)
             invoice = Invoices.load(order='id desc')

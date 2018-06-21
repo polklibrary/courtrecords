@@ -31,6 +31,7 @@ class ManageOrder(BaseView):
             invoice.status = int(self.request.params.get('invoice.status',1))
             invoice.deliver_digitally = Validators.bool(self.request.params.get('invoice.deliver_digitally',0))
             invoice.deliver_physically = Validators.bool(self.request.params.get('invoice.deliver_physically',0))
+            invoice.divorces_only = Validators.bool(self.request.params.get('invoice.divorces_only',0))
             
             
             final_status = Statuses.load(order='priority desc')
@@ -53,7 +54,10 @@ class ManageOrder(BaseView):
                 
         
         invoice = Invoices.load(id=id)
+        records = invoice.get_records()
         self.set('invoice',invoice)
-        self.set('records',invoice.get_records())
+        
+        self.set('is_divorce_case', len(records) > 0 and records[0]['case'].ActionTypes.id == 17)  # hardcoded but eh... very unlikely to change
+        self.set('records',records)
         self.set('statuses',Statuses.loadAll(order='priority asc'))
         return self.response

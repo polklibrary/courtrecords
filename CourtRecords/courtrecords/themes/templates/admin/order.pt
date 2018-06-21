@@ -70,6 +70,13 @@
                 <input id="invoice-physical" type="checkbox" name="invoice.deliver_physically"  checked="${invoice.deliver_physically}" />
                 <label for="invoice-physical">Physical Delivery</label> 
                 
+                <tal:block condition="is_divorce_case">
+                <br />
+                <br />
+                <input id="invoice-physical" type="checkbox" name="invoice.divorces_only"  checked="${invoice.divorces_only}" />
+                <label for="invoice-physical">Only wants copies of the judgement and certificate of divorce.</label> 
+                </tal:block>
+                
                 <br />
                 <br />
                 

@@ -13,7 +13,6 @@ class ManageDataEdit(ManageData):
 
     @view_config(route_name='manage_edit_data', renderer='../themes/templates/admin/data-edit.pt', permission=ACL.EDITOR)
     def manage_edit_data(self):
-
         
         table = str(self.request.matchdict['table'])
         table_class = Import('courtrecords.models', table)
@@ -37,7 +36,7 @@ class ManageDataEdit(ManageData):
         self.set('table', table)
         if table.endswith('ies'):
             self.set('table_singular', table[:-3] + 'y')
-        elif table.endswith('es'):
+        elif table.endswith('ses'):
             self.set('table_singular', table[:-2])
         elif table.endswith("'s"):
             self.set('table_singular', table[:-2])

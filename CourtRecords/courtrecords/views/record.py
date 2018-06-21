@@ -37,7 +37,7 @@ class Record(BaseView):
             'case': case,
             'verses' : self.determine_verses(entities, case.ActionTypes.actiontype),
             'entities': entities,
-            'price': '${:,.2f}'.format( float(entities[0].Roles.price) ),
+            'price': '${:,.2f}'.format( float(case.CallNumbers.price) ),
         }
         self.set('record', record)
 

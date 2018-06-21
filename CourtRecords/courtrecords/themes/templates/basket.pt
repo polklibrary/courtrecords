@@ -134,9 +134,18 @@
                 <div id="step2" class="hide steps">
                     <h2>Step 2: Select Delivery Option</h2>
                     
-                    <label for="checkout-mail">Mail me a physical copy:</label> <input id="checkout-mail" type="checkbox" name="customer.checkout" value="physically" />
+                    <input id="checkout-mail" type="checkbox" name="customer.checkout" value="physically" />
+                    <label for="checkout-mail">Mail me a physical copy.</label> 
                     <br />
-                    <label for="checkout-digital">Email me a digital copy:</label> <input id="checkout-digital"  type="checkbox" name="customer.checkout" value="digitally" />
+                    
+                    <input id="checkout-digital"  type="checkbox" name="customer.checkout" value="digitally" />
+                    <label for="checkout-digital">Email me a digital copy.</label> 
+                    <br />
+                    
+                    <tal:block condition="show_divorce_message">
+                    <input id="checkout-divorces-only"  type="checkbox" name="customer.checkout" value="divorces-only"  />
+                    <label for="checkout-divorces-only">For DIVORCES only. Check if you ONLY WANT COPIES OF THE JUDGMENT AND CERTIFICATE OF DIVORCE (if available). Normally, this is all that is required for Social Security inquiries.</label> 
+                    </tal:block>
                     
                     <br />
                     <br />

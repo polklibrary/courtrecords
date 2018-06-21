@@ -22,6 +22,7 @@ class Invoices(Base,Model):
     agreement_accepted = Column(Boolean)
     deliver_digitally = Column(Boolean)
     deliver_physically = Column(Boolean)
+    divorces_only = Column(Boolean)
     records = Column(Text)
     completed = Column(Boolean)
     created = Column(TIMESTAMP, default=datetime.datetime.now())
@@ -38,6 +39,7 @@ class Invoices(Base,Model):
         self.agreement_accepted = kwargs.get('agreement_accepted',False)
         self.deliver_digitally = kwargs.get('deliver_digitally',False)
         self.deliver_physically = kwargs.get('deliver_physically',False)
+        self.divorces_only = kwargs.get('divorces_only',False)
         self.completed = kwargs.get('completed',False)
         self.records = json.dumps(kwargs.get('records',[]))
         self.hash = hashlib.sha256( 'security-hash-' + str(time.time()) + '-randomness' ).hexdigest()
@@ -46,7 +48,6 @@ class Invoices(Base,Model):
     def set_records(self,records):
         self.records = json.dumps(records)
             
-
     def get_records_raw(self):
         return json.loads(self.records)
             

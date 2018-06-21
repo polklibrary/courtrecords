@@ -670,10 +670,10 @@ img { border: 0 none; }
     vertical-align: inherit;
 }
 
-#basket label[for="checkout-mail"], #basket label[for="checkout-digital"] {
-    display: inline-block;
-    text-align: right;
-    width: 200px;
+#basket label[for="checkout-mail"], #basket label[for="checkout-digital"], #basket label[for="checkout-divorces-only"]  {
+     display: inline-block; 
+     width: 800px; 
+     vertical-align: top;
 }
 #basket input {
     vertical-align: middle;
