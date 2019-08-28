@@ -15,7 +15,7 @@ var Themer = {
     
     init : function(){
         var bk = this.Backgrounds[Math.floor(Math.random()*this.Backgrounds.length)];
-        var url = 'url(/themes/images/backgrounds/' + bk + ')';
+        var url = 'url(https://polk.uwosh.edu/archives/courtrecords/themes/images/backgrounds/' + bk + ')';
         $('html').css('background-image', url);
     },
 }

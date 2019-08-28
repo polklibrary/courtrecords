@@ -28,11 +28,11 @@
             <h2>Utilities</h2>
             <div class="row">
                 <input class="button" type="submit" value="Reindex Year Fields" name="edit.Form.reindex.year" />
-                (Takes a long time to run)
+                (Takes a long time to run.  Will cause browser proxy timeout screen but it is still running.)
             </div>
             <div class="row">
                 <input class="button" type="submit" value="Reindex Full Text" name="edit.Form.reindex.fulltext" />
-                (Takes a long time to run)
+                (Takes a long time to run.  Will cause browser proxy timeout screen but it is still running.)
             </div>
 
         </form>
