@@ -202,89 +202,152 @@
         <div class="clear"></div>
     </div>
 
-
     
-    <!-- outer-wrapper -->
-    <footer role="contentinfo" id="portal-footer-wrapper">
+    <footer id="portal-footer-wrapper" role="contentinfo">
         <div id="footer-slogan">
-            The University of Wisconsin Oshkosh - Where Excellence and Opportunity Meet.
+            The University of Wisconsin Oshkosh — Where Excellence and Opportunity Meet.
         </div>
-        <div class="column" id="footer-info">
+    
+        <div id="footer-info" class="columnex">
+        
+            <div class="column-outer">
             <div class="col-100">
-                <div class="col-33" id="campus-map">
-                    <a href="http://www.uwosh.edu/go/directions" target="_blank">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/wismap-color.png" class="wismap left desaturate" alt="Map of Wisconsin">
-                    </a>
-                    <div>
-                        <span class="copyright">&copy;<span class="populate-year">2015</span> UW Board of Regents</span>
-                        <address>
-                            <div>University of Wisconsin Oshkosh</div>
-                            <div>
-                                <div>800 Algoma Blvd.</div>
-                                <span>Oshkosh, WI 54901</span>
-                            </div>
-                            <div>
-                                <a href="tel:9204241234">(920) 424-1234</a>
-                            </div>
-                        </address>
+            
+                <div id="campus-map" class="col-30">
+                    
+                    <div class="column">
+                        
+                        <div class="col-40">
+                            <a target="_blank" href="http://www.uwosh.edu/go/directions">
+                                <img alt="Map of Wisconsin" class="wismap left desaturate" src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/wismap-color.png" />
+                            </a>
+                        </div>
+                        
+                        <div class="col-50">
+                            <label>Location</label>
+                            <a href="https://maps.google.com/maps?q=University+of+Wisconsin+Oshkosh+800+Algoma+Blvd.+Oshkosh,+WI+54901&um=1&ie=UTF-8&hl=en&sa=N&tab=wl">
+                                University of Wisconsin Oshkosh
+                                800 Algoma Blvd.
+                                Oshkosh, WI 54901
+                            </a>
+                            <br />
+                            <a href="/english/++theme++diazo/tel:9204241234">(920) 424-1234</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-33" id="campus-links">
-                    <ul class="nostyle no-mar-pad">
-                        <li><a href="http://www.uwosh.edu/resources/accessibility">Accessibility</a></li>
-                        <li><a href="http://www.uwosh.edu/career/">Career Services</a></li>
-                        <li><a href="http://uwosh.edu/go/directions" target="_blank">Get Directions</a></li>
-                        <li><a href="http://www.uwosh.edu/foundation/support-uw-oshkosh">Give to UW Oshkosh</a></li>
-                        <li><a href="http://www.uwosh.edu/imc/media-relations">Media Relations</a></li>
-                        <li><a href="http://www.uwosh.edu/hr/why-work-at-uwo">Work at UW Oshkosh</a></li>
-                    </ul>
-                    <div>
-                        <a href="http://www.uwosh.edu/imc/web-new-media/mobile">
-                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/mobileapp-color.png" class="desaturate" alt="UW Oshkosh mobile app icon">
-                            <div>Download UW <br> Oshkosh's Mobile App</div>
-                        </a>
-                        <a class="pull-left" href="http://emergency.uwosh.edu/">
-                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/emergency-color.png" class="desaturate" alt="Emergency and Safety Information icon">
-                            <div>Emergency and Safety <br> Information</div>
-                        </a>
+                
+                <div id="quick-links" class="col-20">
+                    <div class="column">
+                        <div class="col-30">
+                            &nbsp;
+                        </div>
+                        <div class="col-70">
+                            <label>Quick Links</label>
+                            <div>
+                                <a href="http://www.uwosh.edu/go/mobile">
+                                    Download UW Oshkosh's Mobile App
+                                </a>
+                            </div>
+                            <div>
+                                <a href="http://emergency.uwosh.edu/">
+                                    Emergency and Safety Information
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-33" id="social-links">
-                    <ul class="nostyle no-mar-pad">
-                        <li><a href="https://www.facebook.com/uwoshkosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-facebook.png" class="desaturate" alt="Facebook logo"></a></li>
-                        <li><a href="https://twitter.com/uwoshkosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-twitter.png" class="desaturate" alt="Twitter logo"></a></li>
-                        <li><a href="http://instagram.com/uwoshkosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-instagram.png" class="desaturate" alt="Instagram logo"></a></li>
-                        <li><a href="http://www.youtube.com/uwosh" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-youtube.png" class="desaturate" alt="YouTube logo"></a></li>
-                        <li><a href="http://www.linkedin.com/edu/school?id=19693" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-linkedin.png" class="desaturate" alt="LinkedIn logo"></a></li>
-                        <li><a href="http://www.pinterest.com/uwoadmissions" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-pinterest.png" class="desaturate" alt="Pinterest logo"></a></li>
-                        <li><a href="http://www.flickr.com/photos/uwoshkosh/sets/" target="_blank"><img src="http://www.uwosh.edu/archives/++theme++uwosh/images/icon-flickr.png" class="desaturate" alt="Flickr logo"></a></li>
-                    </ul>
-                    <div>
-                        <a href="http://www.collegeportraits.org/WI/UW-Oshkosh" target="_blank">
-                        <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/college-portrait.png" alt="College Portrait logo">
-                        </a>
-                        <a href="http://www.ncahlc.org/?option=com_directory&amp;Action=ShowBasic&amp;instid=2030" target="_blank">
-                        <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/hlc.png" alt="Higher Learning Commission logo">
-                        </a>
-                        <a href="http://www.wisconsin.edu/" target="_blank">
-                        <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uw-system.png" alt="University of Wisconsin System logo">
-                        </a>
+                
+                <div id="campus-links" class="col-20">
+                    <div class="column">
+                        <div class="col-30">
+                            &nbsp;
+                        </div>
+                        <div class="col-70">
+                            <label>Resources</label>
+                            <div>
+                                <a href="http://www.uwosh.edu/resources/accessibility">
+                                    Accessibility
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://www.google.com/maps?q=University+of+Wisconsin+Oshkosh+800+Algoma+Blvd.+Oshkosh,+WI+54901&um=1&ie=UTF-8&hl=en&sa=N&tab=wl">
+                                    Get Directions
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://umc.uwosh.edu/for-media/">
+                                    Media Relations
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://hr.uwosh.edu/careers">
+                                    Work at UW Oshkosh
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="uw-links" class="col-30">
+                    <div class="column">
+                        <div class="col-20">
+                            &nbsp;
+                        </div>
+                        <div class="col-80">
+                            <iframe style="filter: grayscale(100%)" title="UWO Accreditation Image" frameborder="0" scrolling="no" allowtransparency="true" width="150" height="166" src="https://cdn.yoshki.com/iframe/54732.html"></iframe>
+                            <a target="_blank" href="http://www.wisconsin.edu/">
+                                <img alt="University of Wisconsin System logo" src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/uw-system.png" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <div class="clear"></div>
+            </div>
+        </div>
+                        
+        <div id="social-links">
+            <div class="left">
+                <span class="copyright">©<span class="populate-year">2018</span> UW Board of Regents</span>
+            </div>
+            <div  class="right">
+                <a href="https://www.facebook.com/uwoshkosh">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/fb.jpg" alt="Facebook" />
+                </a>
+                <a href="https://twitter.com/uwoshkosh">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/tw.jpg" alt="Twitter" />
+                </a>
+                <a href="http://instagram.com/uwoshkosh">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/in.jpg" alt="Instagram" />
+                </a>
+                <a href="http://www.youtube.com/uwosh">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/you.jpg" alt="Youtube" />
+                </a>
+                <a href="http://www.linkedin.com/edu/school?id=19693">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/ln.jpg" alt="Linkedin" />
+                </a>
+                <a href="http://www.pinterest.com/uwoshkosh/">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/pin.jpg" alt="Pinterest" />
+                </a>
+                <a href="http://www.flickr.com/photos/uwoshkosh/sets/">
+                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/flickr.jpg" alt="Flickr" />
+                </a>
+            </div>
             <div class="clear"></div>
         </div>
-    
-        <div id="footer-links">
+        
+        <div id="footer-tools">
             <a tal:condition="request.can_edit" href="${request.application_url}/manage">Manage</a>
             <span> &nbsp; &nbsp; &nbsp; </span>
             <a tal:condition="not:request.user.id" href="${request.application_url}/login">Login</a>
             <a tal:condition="request.user.id" href="${request.application_url}/logout">Logout</a>
         </div>
-
+        
     </footer>
     <div id="mobile-overlay"></div>
-
+    
+ 
     
     <script type="text/javascript">
         LoadUniversalAnalytics = function(file, callback) {

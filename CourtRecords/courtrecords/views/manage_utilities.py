@@ -1,6 +1,6 @@
 
 from courtrecords.security.acl import ACL
-from courtrecords.models import DBSession, Users, Cases, Entities, ActionTypes, Counties, Roles, Suffixs, Prefixs, Archives, Courts, Containers, CallNumbers
+from courtrecords.models import DBSession, Users, Cases, Entities, ActionTypes, Counties, Roles, Suffixs, Prefixs, Archives, Courts, Containers, CallNumbers, Config
 from courtrecords.utilities.utility import has_interface
 from courtrecords.views import BaseView
 from courtrecords.views.manage_data import ManageData,Import
@@ -27,6 +27,10 @@ class ManageUtilities(ManageData):
                 
             DBSession.flush()
             transaction.commit()
+            
+        if self.request.params.get('edit.Form.reindex.fulltext',''):
+            self._fulltext_reindex()
+    
     
         return self.response
         
@@ -60,3 +64,43 @@ class ManageUtilities(ManageData):
             except:
                 pass #ignore
             return dt.year, str(year)
+            
+    """ STOP:  IF change is made, make sure it is changed in manage_records.py """
+    def _fulltext_reindex(self):
+        print "REINDEXING ALL FULL TEXT ---------"
+            
+        fields_to_index = Config.load(name='fulltext_fields_to_index')
+        indexes = fields_to_index.value.split(',')
+        
+        cases = DBSession.query(Cases).all()
+        counter = 0
+        for case in cases:
+            counter+=1
+            entities = DBSession.query(Entities).filter_by(case_id=case.id).all() #Entities.loadAll(case_id=case.id)
+            
+            fulltext = ""
+            for index in indexes:
+                try:
+                    if 'case.' in index:
+                        field = index.split('.').pop()
+                        fulltext += getattr(case, field) + ' '
+                    elif 'entity.' in index:
+                        field = index.split('.').pop()
+                        for e in entities:
+                            fulltext += getattr(e, field) + ' '
+                        
+                except Exception as e:
+                    print str(e)
+                    pass #ignore
+            
+            fulltext = fulltext.replace('\n',' ').replace('\r',' ') # drop new lines
+            fulltext = re.sub('[^A-Za-z0-9\s]+', '', fulltext) # clean up special characters
+            fulltext = re.sub('\s+', ' ', fulltext).strip() # enforce single white space
+            case.full_text = fulltext.lower()
+
+            if counter % 5000 == 0:
+                print str(counter) + " records indexed"
+                DBSession.flush()
+                
+        DBSession.flush()
+        transaction.commit()

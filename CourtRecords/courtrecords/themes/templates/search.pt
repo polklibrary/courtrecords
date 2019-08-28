@@ -14,6 +14,8 @@
         <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/datatables/jquery.dataTables.min.js')}"></script>
         <script>
         
+            var TotalCount = ${total_records};
+            var everything = "${escaped_everything}";
             var entity = "${escaped_entity}";
             var firstname = "${escaped_firstname}";
             var keywords = "${escaped_keywords}";
@@ -28,6 +30,14 @@
             
         
             $(document).ready(function(){
+                
+                Search.init();
+                Search.checkbox_handlers();
+                Search.date_adjuster();
+                Search.advanced();
+                Search.modes();
+                Basket.update();
+            
                 $("#search-results-table").dataTable({
                     "autoWidth": false,
                     'processing': true,
@@ -36,10 +46,11 @@
                     'lengthChange': false,
                     'pageLength': 15,
                     'order': [[ 1, 'asc' ]],
-                    'language': {'processing': 'Loading...'},
+                    'language': {'processing': 'Searching ' + TotalCount + ' records...'},
                     'ajax': {
                         'url':'${request.application_url}/search/get',
                         'data': function(d) {
+                            d.everything = everything;
                             d.entity = entity;
                             d.firstname = firstname;
                             d.keywords = keywords;
@@ -50,6 +61,7 @@
                             d.roles = roles;
                             d.courts = courts;
                             d.archives = archives;
+                            d.mode = $('#search-mode').val();
                         }
                     },
                     'drawCallback': function( settings ) {
@@ -69,12 +81,7 @@
                     } 
                 }); 
                 
-                
-                Search.init();
-                Search.checkbox_handlers();
-                Search.date_adjuster();
-                Search.advanced();
-                Basket.update();
+
             });
         </script>
     </tal:block>
@@ -103,13 +110,15 @@
                     <div class="search-bar col-80">
                         
                         <div class="col-50">
-                            <label for="entity" class="hide">Last Name / Institution name</label>
-                            <input id="entity" type="text" value="${entity}" name="entity" placeholder="Last name / Institution name" />
-
-                            <label for="first-name" class="hide">First Name</label>
-                            <input id="first-name" type="text" value="${firstname}" name="firstname" placeholder="First name" />
+                            <!-- <label for="entity" class="hide">Last Name / Institution name</label> -->
+                            <!-- <input id="entity" type="text" value="${entity}" name="entity" placeholder="Last name / Institution name" /> -->
+                            <!-- <label for="first-name" class="hide">First Name</label> -->
+                            <!-- <input id="first-name" type="text" value="${firstname}" name="firstname" placeholder="First name" /> -->
+                            <!-- <input id="search-mode" type="hidden" name="mode" value="basic" /> -->
+                            <!-- <input class="button" type="submit" value="Search" name="search" /> -->                           
+                            <label for="everything" class="hide">Search</label>
+                            <input id="everything" type="text" value="${everything}" name="everything" placeholder="Search for a name or an address" />
                             <input id="search-mode" type="hidden" name="mode" value="basic" />
-
                             <input class="button" type="submit" value="Search" name="search" />
                         </div>
                         
@@ -247,6 +256,8 @@
                                 <th>Role</th>
                                 <th>Record Date</th>
                                 <th>County</th>
+                                <th>Community</th>
+                                <th>Address</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>

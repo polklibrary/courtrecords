@@ -133,9 +133,13 @@
                        --
                     </span>
                 </div>
-                <div>
+                <div tal:condition="record.case.Counties.county">
                     <label>County:</label> 
                     <span>${record.case.Counties.county}</span>
+                </div>
+                <div tal:condition="record.case.Communities.community">
+                    <label>Community:</label> 
+                    <span>${record.case.Communities.community}</span>
                 </div>
                 <div class="hide">
                     <label>Archives:</label> 
@@ -165,6 +169,11 @@
                     <label>Call Number:</label> 
                     <span>${record.case.CallNumbers.call_number}</span>
                 </div>
+                <div tal:condition="record.case.Cases.address">
+                    <label>Address:</label> 
+                    <span>${record.case.Cases.address}</span>
+                </div>
+                
                 <tal:if condition="mode">
                     <div>
                         <label>Unique ID:</label> 

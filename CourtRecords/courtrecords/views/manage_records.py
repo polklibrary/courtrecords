@@ -1,6 +1,6 @@
 
 from courtrecords.security.acl import ACL
-from courtrecords.models import DBSession, Users, Cases, Entities, ActionTypes, Counties, Roles, Suffixs, Prefixs, Archives, Courts, Containers, CallNumbers
+from courtrecords.models import DBSession, Users, Cases, Entities, ActionTypes, Counties, Roles, Suffixs, Prefixs, Archives, Courts, Containers, CallNumbers, Communities, Config
 from courtrecords.utilities.utility import has_interface
 from courtrecords.views import BaseView
 from courtrecords.views.manage_data import ManageData,Import
@@ -67,9 +67,10 @@ class ManageRecords(ManageData):
         if case_id == 'new' or case_id == 0:
             case = None
         else:
-            case = DBSession.query(Cases,Counties,ActionTypes,Archives).filter(Cases.id == case_id) \
+            case = DBSession.query(Cases,Counties,Communities,ActionTypes,Archives).filter(Cases.id == case_id) \
                                                                       .filter(Cases.actiontype == ActionTypes.id) \
                                                                       .filter(Cases.county == Counties.id) \
+                                                                      .filter(Cases.community == Communities.id) \
                                                                       .filter(Cases.archive == Archives.id) \
                                                                       .first()
 
@@ -90,6 +91,7 @@ class ManageRecords(ManageData):
         self.set('archives',Archives.loadAll(order="name asc"))
         self.set('roles',Roles.loadAll(order="role asc"))
         self.set('counties',Counties.loadAll(order="county asc"))
+        self.set('communities',Communities.loadAll(order="community asc"))
         self.set('prefixs',Prefixs.loadAll(order="prefix asc"))
         self.set('suffixs',Suffixs.loadAll(order="suffix asc"))
         
@@ -112,9 +114,41 @@ class ManageRecords(ManageData):
         
         
         return self.response
+    
+    
+    """ STOP:  IF change is made, make sure it is changed in manage_utilities.py """
+    def _fulltext(self, case_id):
+        fields_to_index = Config.load(name='fulltext_fields_to_index')
+        indexes = fields_to_index.value.split(',')
+        
+        case = Cases.load(id=case_id)
+        entities = Entities.loadAll(case_id=case_id)
+        
+        fulltext = ""
+        for index in indexes:
+            try:
+                if 'case.' in index:
+                    field = index.split('.').pop()
+                    fulltext += getattr(case, field) + ' '
+                elif 'entity.' in index:
+                    field = index.split('.').pop()
+                    for e in entities:
+                        fulltext += getattr(e, field) + ' '
+                    
+            except Exception as e:
+                print str(e)
+                pass #ignore
+        
+        fulltext = fulltext.replace('\n',' ').replace('\r',' ') # drop new lines
+        fulltext = re.sub('[^A-Za-z0-9\s]+', '', fulltext) # clean up special characters
+        fulltext = re.sub('\s+', ' ', fulltext).strip() # enforce single white space
+        case.full_text = fulltext.lower()
+        case.save(self.request)
         
     
     def _save(self, case_id):
+
+    
         entities, new_entities = {}, {}
         cases, new_cases = {}, {}
         
@@ -148,7 +182,8 @@ class ManageRecords(ManageData):
                         
                         
             #new_cases[id]['year'] = self._determine_year
-                        
+        
+        
         # save new cases
         for k,v in new_cases.items():
             case = Cases()
@@ -180,6 +215,9 @@ class ManageRecords(ManageData):
                 setattr(entity,attr,value)
             entity.save(self.request)
             
+            
+        self._fulltext(case_id)
+            
     def _get_year(self, case):
         if not case.year_text:
             return case.year
@@ -192,6 +230,8 @@ class ManageRecords(ManageData):
         elif year.count('-') == 1 or year.count(',') == 1: 
             syear, eyear = re.split(r'[-,]*', year)
             return syear.strip(), str(year)
+        elif year == '':
+            return (0,'')            
         else:
             class FakeDate(object):
                 pass

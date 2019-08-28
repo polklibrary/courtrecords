@@ -256,6 +256,9 @@ img { border: 0 none; }
 #search input#entity {
     width: 200px;
 }
+#search input#everything {
+    width: 325px;
+}
 #search input#first-name {
     width: 100px;
 }
@@ -294,15 +297,22 @@ img { border: 0 none; }
 
 #search-results-table_processing {
     background: none repeat scroll 0 0 #cccccc;
+    border-radius: 10px;
     box-shadow: 0 0 5px 1px #666;
+    color: #555;
     font-weight: bold;
     height: inherit;
     left: 50%;
-    margin-left: -75px;
-    padding: 10px 45px;
-    width: 100px;
+    margin-left: -200px;
+    padding: 10px 25px;
+    width: 250px;
+    animation: searchingGlow 1s linear 0s infinite alternate;
 }
 
+@keyframes searchingGlow {
+  from {box-shadow: 0 0 5px 1px #666;}
+  to {box-shadow: 0 0 8px 3px #316eb1;}
+}
 
 /* FACETS =========================================================================================== */
 #facets {
@@ -416,6 +426,8 @@ img { border: 0 none; }
     border: 1px solid #dddddd;
     border-left: 0 none;
     border-right: 0 none;
+    font-size: 12px;
+    text-align: center;
 }
 #search-results-table tr td:first-child, #search-results-table tr td:nth-child(2), #basket-results-table tr td:first-child {
     border-left: 1px solid #dddddd;
@@ -426,10 +438,10 @@ img { border: 0 none; }
 
 /* All Columns */
 #search-results-table tr th, #basket-results-table tr th {
-    padding: 10px 10px;
+    padding: 10px 15px 10px 5px;
 }
 #search-results-table  tbody th, #search-results-table tbody td, #basket-results-table tbody th, #basket-results-table tbody td {
-    padding: 5px 8px;
+    padding: 5px 5px;
 }
 
 /* ID Column (Hidden) */
@@ -437,20 +449,27 @@ img { border: 0 none; }
     display: none;
 }
 
-/* Date Column */
+/* Date Column 
 #search-results-table tr th:nth-child(6), #search-results-table tr td:nth-child(6) {
     text-align: center;
-}
+}*/
 
 /* County Column */
 #search-results-table tr th:nth-child(7){ width: 70px !important; }
 
+/* Address Column 
+#search-results-table tr td:nth-child(9){ font-size: 10px; }*/
+
 /* Details Column */
-#search-results-table tr th:nth-child(8){ width: 10px !important; background-image: none; }
-#search-results-table tr td:nth-child(8){ text-align: right; }
-#search-results-table tr th:nth-child(8) > img, #search-results-table tr td:nth-child(8) > img {
+#search-results-table tr th:nth-child(10){ width: 10px !important; background-image: none; }
+#search-results-table tr td:nth-child(10){ text-align: right; }
+#search-results-table tr th:nth-child(10) > img, #search-results-table tr td:nth-child(10) > img {
     cursor: pointer;
     width: 30px;
+}
+
+#search-results-table .sorting_asc, #search-results-table .sorting {
+    background-size: 15px;
 }
 
 
@@ -910,6 +929,9 @@ img { border: 0 none; }
 #home .home-box .archives-description {
     background-color: rgba(255, 255, 255, 1);
     padding: 10px 10px;
+}
+#home .home-box form #everything{
+    width: 300px;
 }
 #home .home-box form #entity{
     width: 180px;

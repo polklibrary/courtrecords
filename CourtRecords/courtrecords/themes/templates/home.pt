@@ -23,13 +23,17 @@
                         <span class="heading archives-blue">Court Records Index Search</span>
                         <form method="post" action="${request.application_url}/search">
                             <b>Start your search here</b>
-                            <label for="entity" class="hide">Last Name / Institution name</label>
-                            <input id="entity" type="text" value="" name="entity" placeholder="Last name / Institution name" />
+                            <!-- <label for="entity" class="hide">Last Name / Institution name</label> -->
+                            <!-- <input id="entity" type="text" value="" name="entity" placeholder="Last name / Institution name" /> -->
 
-                            <label for="first-name" class="hide">First Name</label>
-                            <input id="first-name" type="text" value="" name="firstname" placeholder="First name" />
+                            <!-- <label for="first-name" class="hide">First Name</label> -->
+                            <!-- <input id="first-name" type="text" value="" name="firstname" placeholder="First name" /> -->
+                            <!-- <input id="search-mode" type="hidden" name="mode" value="basic" /> -->
+
+                            <label for="everything" class="hide">Search</label>
+                            <input id="everything" type="text" value="" name="everything" placeholder="Search for a name or an address" />
                             <input id="search-mode" type="hidden" name="mode" value="basic" />
-
+                            
                             <input class="button" type="submit" value="Search" name="search" />
                             
                             <br />

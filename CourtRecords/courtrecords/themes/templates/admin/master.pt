@@ -70,6 +70,9 @@
                 <a href="${request.application_url}/manage/data/CallNumbers">Manage Call Numbers</a>
             </li>
             <li>
+                <a href="${request.application_url}/manage/data/Communities">Manage Communities</a>
+            </li>
+            <li>
                 <a href="${request.application_url}/manage/data/Containers">Manage Containers</a>
             </li>
             <li>

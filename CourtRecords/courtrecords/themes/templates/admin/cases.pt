@@ -71,9 +71,11 @@
                         <th>Container Number</th>
                         <th>Subset</th>
                         <th>County</th>
+                        <th>Community</th>
                         <th>Court</th>
                         <th>Call Number</th>
                         <th>Archive</th>
+                        <th>Address</th>
                         <th>Notes</th>
                     </tr>
                 </thead>

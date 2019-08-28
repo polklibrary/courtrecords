@@ -1,6 +1,6 @@
 
 from courtrecords.security.acl import ACL
-from courtrecords.models import DBSession,Cases,Entities,Invoices,Roles,Counties,ActionTypes,Archives,Statuses,Courts,Prefixs,Suffixs,Containers,CallNumbers
+from courtrecords.models import DBSession,Cases,Entities,Invoices,Roles,Counties,ActionTypes,Archives,Statuses,Courts,Prefixs,Suffixs,Containers,CallNumbers,Communities
 from courtrecords.utilities.utility import Result2Dict,Results2Dict
 from courtrecords.utilities.validators import Validators
 from courtrecords.views import BaseView
@@ -20,8 +20,9 @@ class Record(BaseView):
         id = int(self.request.matchdict['id'])
         self.set('mode', self.request.params.get('mode',False))
         
-        case = DBSession.query(Cases,Counties,Courts,ActionTypes,Archives,Containers,CallNumbers).filter(Cases.id==id) \
+        case = DBSession.query(Cases,Counties,Communities,Courts,ActionTypes,Archives,Containers,CallNumbers).filter(Cases.id==id) \
                                                                            .filter(Cases.county==Counties.id) \
+                                                                           .filter(Cases.community==Communities.id) \
                                                                            .filter(Cases.court==Courts.id) \
                                                                            .filter(Cases.actiontype==ActionTypes.id) \
                                                                            .filter(Cases.container==Containers.id) \
@@ -57,6 +58,12 @@ class Record(BaseView):
                     name = "Unknown"
                 verses = name + ' - ' + actiontype
         elif 'naturalization' in actiontype.lower():
+            for entity in entities:
+                name = entity.Entities.entity
+                if not name:
+                    name = "Unknown"
+                verses = name + ' - ' + actiontype
+        elif 'building appraisal' in actiontype.lower():
             for entity in entities:
                 name = entity.Entities.entity
                 if not name:

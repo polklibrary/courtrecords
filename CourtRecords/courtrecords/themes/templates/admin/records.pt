@@ -123,28 +123,54 @@
                     <label for="record-case-notes">Notes:</label>
                     <textarea id="record-case-notes" name="edit.Cases.notes.${case.Cases.id}">${case.Cases.notes}</textarea>
                     
-                    <label for="record-case-archives">Archives:</label>
-                    <select id="record-case-archives" name="edit.Cases.archive.${case.Cases.id}">
-                        <option tal:repeat="arc archives" tal:attributes="selected (arc.id == case.Archives.id)" value="${arc.id}">
-                            ${arc.name}
-                        </option>
-                    </select>
-                                        
-                    <label for="record-case-county">County:</label>
-                    <select id="record-case-county" name="edit.Cases.county.${case.Cases.id}">
-                        <option tal:repeat="co counties" tal:attributes="selected (co.id == case.Cases.county)" value="${co.id}">
-                            ${co.county}
-                        </option>
-                    </select>
+                    <div class="col3 clear"></div>
+                
+                    <div class="left">
+                        <label for="record-case-archives">Archives:</label>
+                        <select id="record-case-archives" name="edit.Cases.archive.${case.Cases.id}">
+                            <option tal:repeat="arc archives" tal:attributes="selected (arc.id == case.Archives.id)" value="${arc.id}">
+                                ${arc.name}
+                            </option>
+                        </select>
+                                            
+                        <label for="record-case-county">County:</label>
+                        <select id="record-case-county" name="edit.Cases.county.${case.Cases.id}">
+                            <option tal:repeat="co counties" tal:attributes="selected (co.id == case.Cases.county)" value="${co.id}">
+                                ${co.county}
+                            </option>
+                        </select>
+                          
+                        <label for="record-case-court">Court:</label>
+                        <select id="record-case-court" name="edit.Cases.court.${case.Cases.id}">
+                            <option tal:repeat="co courts" tal:attributes="selected (co.id == case.Cases.court)" value="${co.id}">
+                                ${co.court}
+                            </option>
+                        </select>    
+                    </div>
                     
-                    <label for="record-case-court">Court:</label>
-                    <select id="record-case-court" name="edit.Cases.court.${case.Cases.id}">
-                        <option tal:repeat="co courts" tal:attributes="selected (co.id == case.Cases.court)" value="${co.id}">
-                            ${co.court}
-                        </option>
-                    </select>                    
+                    <div class="col3 left">
+                        <label for="record-case-community">Community:</label>
+                        <select id="record-case-community" name="edit.Cases.community.${case.Cases.id}">
+                            <option tal:repeat="co communities" tal:attributes="selected (co.id == case.Cases.community)" value="${co.id}">
+                                ${co.community}
+                            </option>
+                        </select>    
+                        
+                        <label for="record-case-address">Address:</label>
+                        <textarea id="record-case-address" class="small" name="edit.Cases.address.${case.Cases.id}">${case.Cases.address}</textarea>
+                        
+                    </div>       
                     
                 </div>
+                
+                
+                <div class="col4 left">
+                    <label for="record-case-full_text">Full Text Index:</label>
+                    <textarea readonly="readonly" disabled="true" id="record-case-full_text">${case.Cases.full_text}</textarea>  
+                </div>
+                
+                
+                
                 
                 <div class="clear"></div>
                 
@@ -194,29 +220,43 @@
                 
                     <label for="record-case-notes">Notes:</label>
                     <textarea id="record-case-notes" name="new.Cases.notes.0"></textarea>
+                    <div class="clear"></div>
                     
-                    <label for="record-case-archives">Archives:</label>
-                    <select id="record-case-archives" name="new.Cases.archive.0">
-                        <option tal:repeat="arc archives" value="${arc.id}">
-                            ${arc.name}
-                        </option>
-                    </select>
-                                        
-                    <label for="record-case-county">County:</label>
-                    <select id="record-case-county" name="new.Cases.county.0">
-                        <option tal:repeat="co counties" value="${co.id}">
-                            ${co.county}
-                        </option>
-                    </select>
-                    
-                    <label for="record-case-court">Court:</label>
-                    <select id="record-case-court" name="new.Cases.court.0">
-                        <option tal:repeat="co courts" value="${co.id}">
-                            ${co.court}
-                        </option>
-                    </select>                    
-                    
-                    
+                    <div class="col3 left">
+                        <label for="record-case-archives">Archives:</label>
+                        <select id="record-case-archives" name="new.Cases.archive.0">
+                            <option tal:repeat="arc archives" value="${arc.id}">
+                                ${arc.name}
+                            </option>
+                        </select>
+                                            
+                        <label for="record-case-county">County:</label>
+                        <select id="record-case-county" name="new.Cases.county.0">
+                            <option tal:repeat="co counties" value="${co.id}">
+                                ${co.county}
+                            </option>
+                        </select>
+                        
+                        <label for="record-case-court">Court:</label>
+                        <select id="record-case-court" name="new.Cases.court.0">
+                            <option tal:repeat="co courts" value="${co.id}">
+                                ${co.court}
+                            </option>
+                        </select>   
+                    </div>
+                        
+                    <div class="col3 left">
+                        <label for="record-case-community">Community:</label>
+                        <select id="record-case-community" name="new.Cases.community.0">
+                            <option tal:repeat="co communities" value="${co.id}">
+                                ${co.community}
+                            </option>
+                        </select>
+                        
+                        <label for="record-case-address">Address:</label>
+                        <textarea id="record-case-address" class="small"  name="new.Cases.address.0"></textarea>
+                    </div>
+                        
                 </div>
                 <div class="clear"></div>
             </div>

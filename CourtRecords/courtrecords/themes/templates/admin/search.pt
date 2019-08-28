@@ -23,8 +23,8 @@
             var results_table = null;
 
             var go_search = function() {
-                var query = {'firstname': $('#for-fn').val(),
-                             'entity': $('#for-ln').val() }
+                var query = {'everything': $('#for-everything').val(),
+                             'keywords': $('#for-keywords').val() }
             
                 QuickSearch.quick( query, function(data){
                   
@@ -94,15 +94,20 @@
 <body class="quick-search">
     <h2>Quick Search</h2>
     <br />
-    <div class="left">
-        <label for="for-ln">Last Name (or Institute):</label>
-        <input id="for-ln" type="text" value="" name="search.Form.entity" />
+    
+    <div>
+        <label for="for-everything">Name or address:</label>
+        <input id="for-everything" type="text" value="" name="search.Form.everything" />
     </div>
-    <div class="left">
-        <label for="for-fn">First Name:</label>
-        <input id="for-fn" type="text" value="" name="search.Form.firstname" />
+    
+    <div>
+        <label for="for-keywords">Notes:</label>
+        <input id="for-keywords" type="text" value="" name="search.Form.keywords" />
     </div>
-    <div class="left">
+    
+    <br />
+    
+    <div class="right">
         <input class="button" type="button" value="Search" name="search.Form.submit" />
     </div>
     <div class="clear"></div>

@@ -1,6 +1,6 @@
 
 from courtrecords.security.acl import ACL
-from courtrecords.models import DBSession, Users, Cases, Entities, ActionTypes, Counties, Roles, Containers, Courts, CallNumbers, Archives
+from courtrecords.models import DBSession, Users, Cases, Entities, ActionTypes, Counties, Roles, Containers, Courts, CallNumbers, Archives, Communities
 from courtrecords.utilities.utility import has_interface
 from courtrecords.views import BaseView
 from pyramid.view import view_config
@@ -23,6 +23,8 @@ class ManageCases(BaseView):
                           'cases.container_number',
                           'cases.subset',
                           'cases.county',
+                          'cases.community',
+                          'cases.address',
                           'cases.notes']
         
         # Determine Order
@@ -32,9 +34,10 @@ class ManageCases(BaseView):
         offset = int(self.request.params.get('start',0))
         
         
-        query = DBSession.query(Cases,Counties,ActionTypes,Archives,Courts,CallNumbers,Containers) \
+        query = DBSession.query(Cases,Counties,Communities,ActionTypes,Archives,Courts,CallNumbers,Containers) \
                                                            .filter(Cases.actiontype == ActionTypes.id) \
                                                            .filter(Cases.county == Counties.id) \
+                                                           .filter(Cases.community == Communities.id) \
                                                            .filter(Cases.archive == Archives.id) \
                                                            .filter(Cases.court == Courts.id) \
                                                            .filter(Cases.call_number == CallNumbers.id) \
@@ -57,9 +60,11 @@ class ManageCases(BaseView):
                 obj.Cases.container_number,
                 obj.Cases.subset,
                 obj.Counties.county,
+                obj.Communities.community,
                 obj.Courts.court,
                 obj.CallNumbers.call_number,
                 obj.Archives.name,
+                obj.Cases.address,
                 obj.Cases.notes
             ])
         

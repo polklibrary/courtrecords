@@ -26,8 +26,12 @@
         <form id="manage-utilities" action="" method="post" >
 
             <h2>Utilities</h2>
-            <div id="manage-utilities" class="row">
+            <div class="row">
                 <input class="button" type="submit" value="Reindex Year Fields" name="edit.Form.reindex.year" />
+                (Takes a long time to run)
+            </div>
+            <div class="row">
+                <input class="button" type="submit" value="Reindex Full Text" name="edit.Form.reindex.fulltext" />
                 (Takes a long time to run)
             </div>
 

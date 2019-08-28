@@ -57,6 +57,10 @@ class Model(object):
     def loadAll(cls,**kwargs):
         return cls._load(**kwargs).all()
         
+    @classmethod
+    def TotalCount(cls,**kwargs):
+        return cls._load(**kwargs).count()
+        
         
         
 
@@ -66,6 +70,7 @@ from courtrecords.models.entities import Entities
 from courtrecords.models.cases import Cases
 from courtrecords.models.actiontypes import ActionTypes
 from courtrecords.models.counties import Counties
+from courtrecords.models.communities import Communities
 from courtrecords.models.roles import Roles
 from courtrecords.models.suffixs import Suffixs
 from courtrecords.models.prefixs import Prefixs
