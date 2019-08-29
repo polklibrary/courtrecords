@@ -73,7 +73,7 @@
         
         <form id="manage-records" action="" method="post" >
             
-            <h2>Case Information</h2>
+            <h2>Record Information</h2>
             <div id="manage-records-case" tal:condition="case" class="row">
                 <div class="col1 left">
 

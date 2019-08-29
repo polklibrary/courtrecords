@@ -58,6 +58,10 @@
                 $('#customer-phone').mask("999-999-9999");
                 
                 
+                $('#checkout input[type="submit"]').submit(function(){
+                    Basket.clear();
+                });
+                
             });
         </script>
     </tal:block>
