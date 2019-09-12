@@ -11,6 +11,7 @@ class Home(BaseView):
         self.set('courtrecord_info', Config.get('homepage_courtrecords'))
         self.set('naturalizations_info', Config.get('homepage_naturalizations'))
         self.set('record_info', Config.get('homepage_record_info'))
+        self.set('appraisal_card_info', Config.get('appraisal_card_info'))
         self.set('warning_info', Config.get('homepage_warning_info'))
         return self.response
        
