@@ -5,11 +5,11 @@
     
     
     <tal:block metal:fill-slot="css">
-        <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
+        <link rel="stylesheet" type="text/css" href="${request.static_url_HTTPS('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
     </tal:block>
     
     <tal:block metal:fill-slot="js">
-        <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.js')}"></script>
+        <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/plugins/jquery/jquery-ui.js')}"></script>
         <script>
             $(document).ready(function(){
                 $('input[name="email"]').tooltip({

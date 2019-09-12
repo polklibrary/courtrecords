@@ -6,6 +6,7 @@ class BaseView(object):
         self.request = request
         self.context = getattr(request, 'context', None)
         self.response = {}
+        
 
     def notify(self, message, level=0):
         self.request.session.flash({'text': message, 'cls':'message-level-' + str(level)})

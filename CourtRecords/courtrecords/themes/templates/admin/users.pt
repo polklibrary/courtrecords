@@ -13,7 +13,7 @@
     </tal:block>
     
     <tal:block metal:fill-slot="js">
-        <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/scaffold.js')}"></script>
+        <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/js/scaffold.js')}"></script>
         <script>
             $(document).ready(function(){
             

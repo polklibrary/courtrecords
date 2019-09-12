@@ -18,8 +18,8 @@
     <link data-bundle="polklibrary-slider" href="https://www.uwosh.edu/archives/++resource++polklibraryslider/slider.css?version=2015-10-20 00:00:00.000001" type="text/css" rel="stylesheet">
         
     
-    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/style.css')}" />
-    <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/tinymce.css')}" />
+    <link rel="stylesheet" type="text/css" href="${request.static_url_HTTPS('courtrecords:themes/css/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="${request.static_url_HTTPS('courtrecords:themes/css/tinymce.css')}" />
     <noscript>
         <style> 
             .needs-js { display:none; } 
@@ -27,10 +27,10 @@
     </noscript>
 
         
-    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery.js')}"></script>
-    <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/cookies/jquery_cookies.js')}"></script>
-    <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/main.js')}"></script>
-    <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/search.js')}"></script>
+    <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/plugins/jquery/jquery.js')}"></script>
+    <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/plugins/cookies/jquery_cookies.js')}"></script>
+    <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/js/main.js')}"></script>
+    <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/js/search.js')}"></script>
     <script type="text/javascript">
         var domain = '${request.application_url}';
     </script>

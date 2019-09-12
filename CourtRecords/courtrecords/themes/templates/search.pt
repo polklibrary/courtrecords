@@ -5,13 +5,13 @@
     
     
     <tal:block metal:fill-slot="css">
-        <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/datatables/jquery.dataTables.css')}" />
-        <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
+        <link rel="stylesheet" type="text/css" href="${request.static_url_HTTPS('courtrecords:themes/plugins/datatables/jquery.dataTables.css')}" />
+        <link rel="stylesheet" type="text/css" href="${request.static_url_HTTPS('courtrecords:themes/plugins/jquery/jquery-ui.css')}" />
     </tal:block>
     
     <tal:block metal:fill-slot="js">
-        <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/jquery/jquery-ui.js')}"></script>
-        <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/datatables/jquery.dataTables.min.js')}"></script>
+        <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/plugins/jquery/jquery-ui.js')}"></script>
+        <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/plugins/datatables/jquery.dataTables.min.js')}"></script>
         <script>
         
             var TotalCount = ${total_records};
@@ -232,7 +232,7 @@
                         <a href="${request.application_url}/basket">
                             <span id="cart-count">0</span> 
                             <span id="cart-items">Items</span>
-                            <img src="${request.static_url('courtrecords:themes/images/shopping-cart-128.png')}" alt="Shopping Cart" />
+                            <img src="${request.static_url_HTTPS('courtrecords:themes/images/shopping-cart-128.png')}" alt="Shopping Cart" />
                         </a>
                     </div>
                     

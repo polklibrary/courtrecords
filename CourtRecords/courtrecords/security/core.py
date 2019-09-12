@@ -67,3 +67,11 @@ class RequestExtension(Request):
             return False
         else:
             return has_permission(permissions,self.context, self)
+        
+    def static_url_HTTPS(self, path):
+        if str(self.registry.settings.get('development_env','True')).lower() == 'true':
+            return self.static_url(path)  
+        return self.static_url(path).replace('http:', 'https:')
+        
+        
+        

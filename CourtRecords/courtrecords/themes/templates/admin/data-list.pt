@@ -4,12 +4,12 @@
     use-macro="load: master.pt">
     
     <tal:block metal:fill-slot="css">
-        <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/scaffold.css')}" />
+        <link rel="stylesheet" type="text/css" href="${request.static_url_HTTPS('courtrecords:themes/css/scaffold.css')}" />
     </tal:block>
     
     <tal:block metal:fill-slot="js">
-        <script type="text/javascript" src="${request.static_url('courtrecords:themes/plugins/tinymce/js/tinymce/tinymce.min.js')}"></script>
-        <script type="text/javascript" src="${request.static_url('courtrecords:themes/js/scaffold.js')}"></script>
+        <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/plugins/tinymce/js/tinymce/tinymce.min.js')}"></script>
+        <script type="text/javascript" src="${request.static_url_HTTPS('courtrecords:themes/js/scaffold.js')}"></script>
         <script>
             $(document).ready(function(){
                 $("#scaffold-table").dataTable({

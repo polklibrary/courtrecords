@@ -99,12 +99,12 @@
             
             <tal:block condition="request.can_edit">
                 <a href="${request.application_url}/manage/records/${record.case.Cases.id}" target="_blank">
-                    <img src="${request.static_url('courtrecords:themes/images/icons/pencil.png')}" alt="Edit mode" title="Edit mode" />
+                    <img src="${request.static_url_HTTPS('courtrecords:themes/images/icons/pencil.png')}" alt="Edit mode" title="Edit mode" />
                 </a>
             </tal:block>
             
             <a tal:condition="not: mode" href="${request.application_url}/record/${record.case.Cases.id}?mode=full" target="_blank">
-                <img src="${request.static_url('courtrecords:themes/images/icons/note_go.png')}" alt="Full mode" title="Full mode" />
+                <img src="${request.static_url_HTTPS('courtrecords:themes/images/icons/note_go.png')}" alt="Full mode" title="Full mode" />
             </a>
 
         </div>
