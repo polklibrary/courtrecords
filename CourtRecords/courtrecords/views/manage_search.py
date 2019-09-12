@@ -43,6 +43,12 @@ class ManageSearch(BaseView):
                 else:
                     against += word + ' ' 
             query = query.filter(" MATCH(cases.full_text) AGAINST('" + against + "' IN BOOLEAN MODE) ")
+            
+        # if everything:
+            # print "EVERYTHING FILTER"
+            # words = shlex.split(everything.lower())
+            # for word in words:
+                # query = query.filter(Cases.full_text.like(word+'%'))
         if keywords:
             words = keywords.replace(',',' ').split(' ')
             for word in words:

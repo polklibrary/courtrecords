@@ -100,7 +100,7 @@ class Search(BaseView):
         limit = int(self.request.params.get('length',15))
         mode = self.request.params.get('mode', 'basic')
 
-                                                                          
+        
         allobjs = []
         query = DBSession.query(Cases,Entities,Roles,Counties,Communities,ActionTypes,Archives,Courts,Containers)
         
@@ -110,6 +110,11 @@ class Search(BaseView):
         if firstname:
             print "FIRSTNAME FILTER"
             query = query.filter(Entities.firstname.like(firstname+'%'))  #only do % right side, otherwise will ignore sql indexing
+        # if everything:
+            # print "EVERYTHING FILTER"
+            # words = shlex.split(everything.lower())
+            # for word in words:
+                # query = query.filter(Cases.full_text.like('%'+word+'%'))
         if everything:
             print "EVERYTHING FILTER"
             words = shlex.split(everything.lower())
@@ -122,6 +127,8 @@ class Search(BaseView):
                 else:
                     against += word + ' ' 
             query = query.filter(" MATCH(cases.full_text) AGAINST('" + against + "' IN BOOLEAN MODE) ")
+            
+            
         if keywords:
             print "KEYWORDS FILTER"
             words = keywords.replace(',',' ').split(' ')

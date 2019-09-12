@@ -12,10 +12,10 @@
         <title>UW Oshkosh Archives - Court Records</title>
     </tal:block>  
     
-    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/uwosh.css" />
-    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
-    <link rel="stylesheet" type="text/css" href="http://www.uwosh.edu/archives/++theme++uwosh/css/archives.css" />
-    <link data-bundle="polklibrary-slider" href="http://www.uwosh.edu/archives/++resource++polklibraryslider/slider.css?version=2015-10-20 00:00:00.000001" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/archives/++theme++uwosh/css/uwosh.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/archives/++theme++uwosh/css/mobile.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.uwosh.edu/archives/++theme++uwosh/css/archives.css" />
+    <link data-bundle="polklibrary-slider" href="https://www.uwosh.edu/archives/++resource++polklibraryslider/slider.css?version=2015-10-20 00:00:00.000001" type="text/css" rel="stylesheet">
         
     
     <link rel="stylesheet" type="text/css" href="${request.static_url('courtrecords:themes/css/style.css')}" />
@@ -35,9 +35,9 @@
         var domain = '${request.application_url}';
     </script>
     
-    <script src="http://www.uwosh.edu/archives/++theme++uwosh/js/archives.js" type="text/javascript"></script>
-    <script src="http://www.uwosh.edu/archives/++theme++uwosh/js/mobile.js" type="text/javascript"></script>
-    <script src="http://www.uwosh.edu/archives/++resource++polklibraryslider/slider.js" type="text/javascript"></script>
+    <script src="https://www.uwosh.edu/archives/++theme++uwosh/js/archives.js" type="text/javascript"></script>
+    <script src="https://www.uwosh.edu/archives/++theme++uwosh/js/mobile.js" type="text/javascript"></script>
+    <script src="https://www.uwosh.edu/archives/++resource++polklibraryslider/slider.js" type="text/javascript"></script>
         
     <tal:block metal:define-slot="css" tal:content="nothing">
        Extendable CSS Slot
@@ -91,7 +91,7 @@
                 <div class="column">
                     <div class="col-100">
                         <a href="http://www.uwosh.edu" id="portal-logo">
-                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/wordmark-large.png" alt="UW Oshkosh" title="UW Oshkosh" class="mobile-t-img">
+                            <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/wordmark-large.png" alt="UW Oshkosh" title="UW Oshkosh" class="mobile-t-img">
                         </a>
                         <div class="col-80 col-t-40 dropdowns" id="arch-top-navigation">
                             <div data-mobile="toggle-popup-children-2" class="hide-1024" id="arch-top-navigation-content">
@@ -125,7 +125,7 @@
                             </span>
                         </div>
                         <a href="http://www.uwosh.edu/archives" id="arch-logo">
-                            <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/archives.png" alt="Archives &amp; ARC" title="Archives &amp; ARC" class="mobile-t-img">
+                            <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/archives.png" alt="Archives &amp; ARC" title="Archives &amp; ARC" class="mobile-t-img">
                         </a>
                         <div class="col-100" id="arch-slider">
                             <section role="section" data-loaded="1" class="portlet portletSlider">
@@ -313,25 +313,25 @@
             </div>
             <div  class="right">
                 <a href="https://www.facebook.com/uwoshkosh">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/fb.jpg" alt="Facebook" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/fb.jpg" alt="Facebook" />
                 </a>
                 <a href="https://twitter.com/uwoshkosh">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/tw.jpg" alt="Twitter" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/tw.jpg" alt="Twitter" />
                 </a>
                 <a href="http://instagram.com/uwoshkosh">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/in.jpg" alt="Instagram" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/in.jpg" alt="Instagram" />
                 </a>
                 <a href="http://www.youtube.com/uwosh">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/you.jpg" alt="Youtube" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/you.jpg" alt="Youtube" />
                 </a>
                 <a href="http://www.linkedin.com/edu/school?id=19693">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/ln.jpg" alt="Linkedin" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/ln.jpg" alt="Linkedin" />
                 </a>
                 <a href="http://www.pinterest.com/uwoshkosh/">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/pin.jpg" alt="Pinterest" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/pin.jpg" alt="Pinterest" />
                 </a>
                 <a href="http://www.flickr.com/photos/uwoshkosh/sets/">
-                    <img src="http://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/flickr.jpg" alt="Flickr" />
+                    <img src="https://www.uwosh.edu/archives/++theme++uwosh/images/uwosh/flickr.jpg" alt="Flickr" />
                 </a>
             </div>
             <div class="clear"></div>
