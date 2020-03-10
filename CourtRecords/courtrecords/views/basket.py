@@ -266,6 +266,7 @@ class Basket(BaseView):
             'zip': self.request.params.get('customer.zip',''),
             'daytimePhone': self.request.params.get('customer.phone',''),
             'redirectUrlParameters': ','.join(redirectUrlParameters),
+            'key': Config.get('credit_card_hash_key'),
         }
         
         

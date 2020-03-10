@@ -26,7 +26,7 @@ def hash_ordering(**kwargs):
             hash_string += str(value)
 
     print "HASH ORDER: " + hash_string
-    return hash_string + 'key'
+    return hash_string + kwargs.get('key', '')
     
     
     
