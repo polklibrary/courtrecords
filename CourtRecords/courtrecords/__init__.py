@@ -30,11 +30,13 @@ def main(global_config, **settings):
     
     # Public Stuff
     config.add_route('home', '/')
+    config.add_route('activity', '/activity')
     config.add_route('about', '/about')
     config.add_route('contact', '/contact')
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
     config.add_route('register', '/register')
+    config.add_route('reset_password', '/reset-password')
     config.add_route('search', '/search')
     config.add_route('get_results', '/search/get')
     config.add_route('basket', '/basket')
@@ -43,7 +45,9 @@ def main(global_config, **settings):
     
     # Management Stuff
     config.add_route('manage', '/manage')
+    config.add_route('manage_theme', '/manage/theme')
     config.add_route('manage_users', '/manage/users')
+    config.add_route('manage_user', '/manage/users/{id}')
     config.add_route('manage_orders', '/manage/orders')
     config.add_route('manage_order', '/manage/orders/{id}')
     config.add_route('manage_list_data', '/manage/data/{table}')

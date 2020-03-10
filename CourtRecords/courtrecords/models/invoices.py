@@ -1,4 +1,4 @@
-
+from courtrecords.utilities.utility import GenerateOrderNumber
 from courtrecords.models import Base,DBSession,Model,Entities,Cases,Roles,Counties,Containers,ActionTypes,Archives
 from sqlalchemy import Column,Integer,BigInteger,String,Unicode,Boolean,TIMESTAMP,ForeignKey,Table,Text
 from sqlalchemy.orm import relationship, backref, relation
@@ -11,6 +11,7 @@ class Invoices(Base,Model):
     __tablename__ = 'invoices'
 
     id = Column(Integer, primary_key=True)
+    order_number = Column(Unicode(64))
     hash = Column(Unicode(512))
     fullname = Column(Unicode(55))
     email = Column(Unicode(55))
@@ -23,7 +24,9 @@ class Invoices(Base,Model):
     deliver_digitally = Column(Boolean)
     deliver_physically = Column(Boolean)
     divorces_only = Column(Boolean)
+    notes = Column(Text)
     records = Column(Text)
+    fees = Column(Text)
     completed = Column(Boolean)
     created = Column(TIMESTAMP, default=datetime.datetime.now())
     
@@ -42,8 +45,11 @@ class Invoices(Base,Model):
         self.divorces_only = kwargs.get('divorces_only',False)
         self.completed = kwargs.get('completed',False)
         self.records = json.dumps(kwargs.get('records',[]))
-        self.hash = hashlib.sha256( 'security-hash-' + str(time.time()) + '-randomness' ).hexdigest()
+        self.fees = kwargs.get('fees','')
+        self.hash = hashlib.sha256(kwargs.get('order_number', 'error')).hexdigest()
+        self.order_number = kwargs.get('order_number', None)
         self.created = datetime.datetime.now()
+        self.notes = kwargs.get('notes','')
 
     def set_records(self,records):
         self.records = json.dumps(records)

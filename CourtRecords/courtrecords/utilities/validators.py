@@ -1,17 +1,31 @@
-
 from email.utils import parseaddr
 import re, datetime, urllib
 
 class Validators(object):
 
-    @classmethod
-    def alias(cls,alias):
-        """ TODO: improve later """
-        return (len(alias) > 3 and len(alias) < 15 and re.match('^[A-Za-z0-9_-]+$', alias) is not None)
+    # @classmethod
+    # def alias(cls,alias):
+        # """ TODO: improve later """
+        # return (len(alias) > 3 and len(alias) < 15 and re.match('^[A-Za-z0-9_-]+$', alias) is not None)
+
 
     @classmethod
-    def password(cls,password):
-        return (len(password) > 7 and len(password) < 20 and re.search('\d+',password) and re.search('[a-zA-Z]',password))
+    def email_in_password(cls, password, email):
+        name = email.split('@')[0]
+        return name in password
+
+    @classmethod
+    def password(cls, password, Config):
+        passes = True
+        if len(password) < int(Config.get('password_min_length')):
+            passes = False
+        if len(password) > 64:
+            passes = False
+        regs = Config.get('password_regex').replace('\r','').split('\n')
+        for r in regs:
+            if not re.search(r, password):
+                passes = False
+        return passes
 
     @classmethod
     def email(cls,email):
@@ -29,6 +43,12 @@ class Validators(object):
         """ Remove all types of spaces """
         return text.replace(' ','')
         
+        
+    @classmethod
+    def is_acl(cls,group):
+        group = cls.sanatize_textsafe(group)
+        return group == 'Administrator' or group == 'Anonymous' or group == 'Editor' or group == 'Authenticated'
+        
     @classmethod
     def bool(cls,o):
         if isinstance(o, str) or isinstance(o, unicode):
@@ -40,5 +60,6 @@ class Validators(object):
         else:
             return bool(o)
 
-        
-        
+
+    re.search('\d+[A-Z]+', 'eest1234')
+    re.search('\d+', 'Dest1234')

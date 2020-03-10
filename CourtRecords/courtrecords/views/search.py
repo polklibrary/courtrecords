@@ -9,8 +9,6 @@ from sqlalchemy import or_,and_,func
 
 import time, datetime, re, HTMLParser, shlex
 
-BROWSEOBJS = []
-
 class Search(BaseView):
 
     @view_config(route_name='search', renderer='../themes/templates/search.pt', permission=ACL.ANONYMOUS)
@@ -74,7 +72,6 @@ class Search(BaseView):
         
     @view_config(route_name='get_results', renderer='json', permission=ACL.ANONYMOUS)
     def get_results(self):
-        global BROWSEOBJS
         
         timer_start = time.time()
         
@@ -212,18 +209,11 @@ class Search(BaseView):
                 
         objs = allobjs[offset:(offset+limit)] # ULTRA FAST
         #objs = query.offset(offset).limit(limit).all() # offset and limit records for better lookup speed
-        
 
-        
-        
         facets = []
         if offset == 0: # only rebuild facets on start of new search
             facets = self.fast_make_facets(allobjs) # must be done before offset and limit 
-        
-        
-        
-        
-        
+
         results = {"recordsTotal": count,
                    "recordsFiltered": count,
                    "facets": facets,
@@ -255,17 +245,14 @@ class Search(BaseView):
                 ]
             )
         
-        
         return results
         
     
     def get_other_entities(self,entity):
         entities = Entities.loadAll(case_id=entity.case_id)
         return filter(lambda x: x['id'] != entity.id, Results2Dict(entities))
-    
-    
-    
-    
+
+
     def fast_make_facets(self, results):
         facets = []
         

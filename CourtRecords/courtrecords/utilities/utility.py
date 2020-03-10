@@ -1,5 +1,5 @@
 from pyramid.httpexceptions import HTTPForbidden
-import datetime
+import datetime,time
 
 def has_interface(cls,interface):
     if not hasattr(cls,interface):
@@ -42,3 +42,10 @@ def Result2Dict(row,purge=[],replace={}):
             for k,v in replace.items():
                 d[k] = v
     return d
+
+
+def GenerateOrderNumber(pretext=''):
+    numb = str(int(round(time.time() * 1000)))
+    return pretext + str(numb)
+    
+    

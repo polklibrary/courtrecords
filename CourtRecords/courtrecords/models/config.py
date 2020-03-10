@@ -31,7 +31,7 @@ class Config(Base,Model):
 
 
     @classmethod
-    def get(cls, name,purify=False):
+    def get(cls, name, purify=False):
         text = DBSession.query(cls).filter(cls.name == name).first().value
         if purify:
             text = re.sub('<[^<]+?>', '', text)

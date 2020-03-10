@@ -1,5 +1,6 @@
-from courtrecords.models import Users,GuestUser
+from courtrecords.models import Users,GuestUser,Config
 from courtrecords.security.acl import ACL
+from courtrecords.utilities.validators import Validators
 from pyramid.decorator import reify
 from pyramid.request import Request
 from pyramid.security import Allow, Authenticated, ALL_PERMISSIONS, Everyone, unauthenticated_userid, has_permission
@@ -33,6 +34,8 @@ class RequestExtension(Request):
 
     @reify
     def application_url(self):
+        if Validators.bool(Config.get('force_https')):
+            return (super(RequestExtension, self).application_url + self.registry.settings.get('apache_path_extension','')).replace('http:', 'https:')
         return super(RequestExtension, self).application_url + self.registry.settings.get('apache_path_extension','')
     
     @property
@@ -69,9 +72,9 @@ class RequestExtension(Request):
             return has_permission(permissions,self.context, self)
         
     def static_url_HTTPS(self, path):
-        if str(self.registry.settings.get('development_env','True')).lower() == 'true':
-            return self.static_url(path)  
-        return self.static_url(path).replace('http:', 'https:')
+        if Validators.bool(Config.get('force_https')):
+            return self.static_url(path).replace('http:', 'https:')
+        return self.static_url(path)  
         
         
         

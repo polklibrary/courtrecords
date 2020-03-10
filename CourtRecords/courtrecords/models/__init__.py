@@ -28,6 +28,11 @@ class Model(object):
         DBSession.delete(self)
         transaction.commit()
         
+    @protected([ACL.ADMINISTRATOR])
+    def remove_admin_only(self, request):
+        DBSession.delete(self)
+        transaction.commit()
+        
     @classmethod
     def _load(cls,**kwargs):
         """ Main Loader """
@@ -81,3 +86,4 @@ from courtrecords.models.containers import Containers
 from courtrecords.models.courts import Courts
 from courtrecords.models.statuses import Statuses
 from courtrecords.models.invoices import Invoices
+from courtrecords.models.payments import Payments

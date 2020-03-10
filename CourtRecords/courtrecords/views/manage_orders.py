@@ -4,6 +4,8 @@ from courtrecords.models import Users, Invoices, Statuses, Archives
 from courtrecords.utilities.validators import Validators
 from courtrecords.views import BaseView
 from courtrecords.views.emailer import Emailer
+from pyramid.httpexceptions import HTTPFound
+from pyramid.url import route_url
 from pyramid.view import view_config
 
 class ManageOrders(BaseView):
@@ -19,10 +21,16 @@ class ManageOrder(BaseView):
 
     @view_config(route_name='manage_order', renderer='../themes/templates/admin/order.pt', permission=ACL.EDITOR)
     def manage_order(self):
-        id = int(self.request.matchdict['id'])
+        id = self.request.matchdict['id']
+        if id.startswith('CRI-'):
+            invoice = Invoices.load(order_number=id)
+        else:
+            try:
+                invoice = Invoices.load(id=int(id))
+            except:
+                invoice = None
         
         if 'invoice.submit' in self.request.params:
-            invoice = Invoices.load(id=id)
             invoice.fullname = self.request.params.get('invoice.fullname','')
             invoice.email = self.request.params.get('invoice.email','')
             invoice.phone = self.request.params.get('invoice.phone','')
@@ -52,8 +60,10 @@ class ManageOrder(BaseView):
                              )
                 
                 
-        
-        invoice = Invoices.load(id=id)
+        if not invoice:
+            return HTTPFound(location=route_url('manage_orders', self.request))
+                
+                
         records = invoice.get_records()
         self.set('invoice',invoice)
         

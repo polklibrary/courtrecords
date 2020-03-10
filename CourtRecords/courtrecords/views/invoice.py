@@ -22,6 +22,7 @@ class Invoice(BaseView):
         records = invoice.get_records_raw()
         
         self.set('invoice', invoice)
+        self.set('invoice_fees', invoice.fees.replace('\n','<br />'))
         self.set('records', records)
         
         return self.response
