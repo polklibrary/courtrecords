@@ -10,7 +10,7 @@ from pyramid.view import view_config
 from sqlalchemy import or_,and_,func
 
 import time
-import urllib2, json
+import re
 
 class Invoice(BaseView):
 
@@ -21,8 +21,12 @@ class Invoice(BaseView):
         invoice = Invoices.load(hash=hash)
         records = invoice.get_records_raw()
         
+        fee_message = invoice.fees.replace('\n','<br />')
+        no_fee = re.sub('[^1-9]*', '', fee_message) == ''
+        
         self.set('invoice', invoice)
-        self.set('invoice_fees', invoice.fees.replace('\n','<br />'))
+        self.set('invoice_fees', fee_message)
+        self.set('no_fee', no_fee)
         self.set('records', records)
         
         return self.response

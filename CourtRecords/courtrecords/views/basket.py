@@ -53,7 +53,7 @@ class Basket(BaseView):
                     
             if len(decoded_params.get('feeprice',[])) != 0:
                 fee_price = float(decoded_params.get('feeprice')[0])
-                fee_desc = str(decoded_params.get('feedesc')[0])
+                fee_desc = base64.decodestring(str(decoded_params.get('feedesc')[0]))
                 total_price += fee_price
                     
             if items:                
@@ -80,7 +80,7 @@ class Basket(BaseView):
                 params.append('items=' + ','.join([str(v) for k,v in items.items()]))
             if fee_price > 0.0 and fee_desc:
                 params.append('feeprice=' + str(fee_price))
-                params.append('&feedesc=' + fee_desc)
+                params.append('&feedesc=' + base64.encodestring(fee_desc).replace('\n',''))
                 
             self.set('perma_cart', self.request.application_url + '/basket?h=H_' + base64.encodestring('&'.join(params)) + '_TA5')
             
@@ -120,7 +120,7 @@ class Basket(BaseView):
         # calculate any fees
         feeprice = float(self.request.params.get('userChoice8',0.0))
         feeprice_fmt = '${:,.2f}'.format(feeprice)
-        feedesc = self.request.params.get('userChoice9','')
+        feedesc = base64.decodestring(self.request.params.get('userChoice9',''))
         feenote = feeprice_fmt + '\n' + feedesc
 
         # Prep Orders
@@ -243,6 +243,7 @@ class Basket(BaseView):
             'transactionTotalAmount',
         ]
         
+        
         kwargs = {
             'orderType':Config.get('credit_card_order_type'), 
             'timestamp':timestamp, 
@@ -258,7 +259,7 @@ class Basket(BaseView):
             'userChoice6': str(orderDeliveryDivorceOnly),
             'userChoice7': payment_hash,
             'userChoice8': str(feeprice),
-            'userChoice9': str(feedesc),
+            'userChoice9': base64.encodestring(str(feedesc)).replace('\n',''),
             'email': self.request.params.get('customer.email',''),
             'streetOne': self.request.params.get('customer.address',''),
             'city': self.request.params.get('customer.city',''),
@@ -272,7 +273,6 @@ class Basket(BaseView):
         
         hash = hash_transaction(**kwargs)
         url = generate_url(Config.get('credit_card_processing_url'), hash, **kwargs)
-        
         
         response = HTTPFound(location=url)
         return response
