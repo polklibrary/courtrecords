@@ -32,6 +32,7 @@ class ManageDataEdit(ManageData):
             
         object = DBSession.query(table_class).filter(getattr(table_class,'id')==id).first()
         html = self._element_generator(table_class.__scaffold__, object)
+        self.set('allow_editing', getattr(table_class, '__allow_editing__', True))
         self.set('form',html)
         self.set('table', table)
         if table.endswith('ies'):
@@ -44,6 +45,10 @@ class ManageDataEdit(ManageData):
             self.set('table_singular', table[:-1])
         else:
             self.set('table_singular', table)
+        
+        
+        self.set('friendly_table', getattr(table_class, '__tablelabel__', table))
+        self.set('friendly_table_singular', getattr(table_class, '__tablelabel__', table)[:-1])
         
         return self.response
         

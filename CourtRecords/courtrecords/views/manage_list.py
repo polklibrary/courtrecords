@@ -21,6 +21,10 @@ class ManageDataList(ManageData):
             for k,v in s.items():
                 thead.append(v['label'])
                 
+        
+        self.set('allow_adding', getattr(table_class, '__allow_adding__', True))
+        self.set('friendly_table', getattr(table_class, '__tablelabel__', table))
+        self.set('friendly_table_singular', getattr(table_class, '__tablelabel__', table)[:-1])
         self.set('thead', thead)
         self.set('table', table)
         self.set('table_singular', table[:-1])

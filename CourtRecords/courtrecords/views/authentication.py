@@ -48,7 +48,7 @@ class Login(BaseView):
 
 class Logout(BaseView):
 
-    @view_config(route_name='logout', permission=ACL.AUTHENTICATED)
+    @view_config(route_name='logout', permission=ACL.ANONYMOUS)
     def logout(self):
         return HTTPFound(route_url('home', self.request), headers=forget(self.request))
        

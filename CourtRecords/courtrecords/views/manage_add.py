@@ -45,6 +45,10 @@ class ManageDataAdd(ManageData):
             self.set('table_singular', table[:-1])
         else:
             self.set('table_singular', table)
+            
+            
+        self.set('friendly_table', getattr(table_class, '__tablelabel__', table))
+        self.set('friendly_table_singular', getattr(table_class, '__tablelabel__', table)[:-1])
         
         return self.response
         

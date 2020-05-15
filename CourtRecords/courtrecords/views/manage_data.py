@@ -49,7 +49,7 @@ class ManageData(BaseView):
         elif element == 'select':
             html += '>'
             for k,v in options.items():
-                html += '<option value="' + v + '"'
+                html += '<option value="' + str(v) + '"'
                 
                 if option_type == 'bool':
                     if Validators.bool(v) == content:

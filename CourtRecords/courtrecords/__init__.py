@@ -59,6 +59,7 @@ def main(global_config, **settings):
     config.add_route('manage_entities_get', '/manage/entities/get')
     config.add_route('manage_cases', '/manage/cases')
     config.add_route('manage_cases_get', '/manage/cases/get')
+    config.add_route('manage_pending_payments', '/manage/pending_payments')
     config.add_route('manage_records_next', '/manage/records/next')
     config.add_route('manage_records_previous', '/manage/records/previous')
     config.add_route('manage_records', '/manage/records/{case_id}')

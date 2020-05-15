@@ -28,7 +28,12 @@ def hash_ordering(**kwargs):
     print "HASH ORDER: " + hash_string
     return hash_string + kwargs.get('key', '')
     
-    
+def generate_return_url(url, **kwargs):
+    params = ''
+    for name,value in kwargs.items():
+        params += str(name) + "=" + str(value) + '&'
+    return url + '?' + params[:-1]
+     
     
 def generate_url(url, hash, **kwargs):
     params = ''
