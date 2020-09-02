@@ -8,7 +8,7 @@ from pyramid.security import remember,forget
 from pyramid.url import route_url
 from pyramid.view import view_config
 
-import time
+import time, hashlib, transaction, ldap
 
 class Login(BaseView):
 
@@ -22,22 +22,32 @@ class Login(BaseView):
             if email and password:
                 user = Users.load(email=email)
                 if user:
-                    if user.password_failures >= int(Config.get('max_login_failures')):
-                        user.password_failures += 1
-                        self.set('issue','Your account is locked out.  Please contact your administrator.')
-                    else:
-                        now = (int(time.time())) - int(Config.get('password_mandatory_reset'))
-                        if user.password_timestamp < now:
-                            return HTTPFound(location=route_url('reset_password', self.request, _query={'mandatory':'1'}))
-                        if user.validate_password(password):
-                            user.password_failures = 0
-                            if not goto:
-                                return HTTPFound(location=route_url('home', self.request), headers=remember(self.request, user.id))
-                            else:
-                                return HTTPFound(location=goto, headers=remember(self.request, user.id))
+                
+                    # Check against LDAP
+                    if user.auth_type == Users.AUTH_LDAP:
+                        if self.ldap_connect_and_check():
+                            return HTTPFound(location=route_url('manage', self.request), headers=remember(self.request, user.id))
                         else:
+                            self.set('issue','Incorrect credentials (Error=0A)')
+                            
+                    # Check against LOCAL
+                    elif user.auth_type == Users.AUTH_LOCAL:
+                        if user.password_failures >= int(Config.get('max_login_failures')):
                             user.password_failures += 1
-                            self.set('issue','Incorrect credentials')
+                            self.set('issue','Your account is locked out.  Please contact your administrator.')
+                        else:
+                            now = (int(time.time())) - int(Config.get('password_mandatory_reset'))
+                            if user.password_timestamp < now:
+                                return HTTPFound(location=route_url('reset_password', self.request, _query={'mandatory':'1'}))
+                            if user.validate_password(password):
+                                user.password_failures = 0
+                                if not goto:
+                                    return HTTPFound(location=route_url('home', self.request), headers=remember(self.request, user.id))
+                                else:
+                                    return HTTPFound(location=goto, headers=remember(self.request, user.id))
+                            else:
+                                user.password_failures += 1
+                                self.set('issue','Incorrect credentials')
                 else:
                     self.set('issue','No user found')
             else:
@@ -45,6 +55,27 @@ class Login(BaseView):
 
         return self.response
         
+    def ldap_connect_and_check(self):
+        try:
+            email = self.request.params.get('email','')
+            password = self.request.params.get('pass','')
+            
+            # build a client
+            ldap_client = ldap.initialize(self.settings('ldap.url','').strip())
+            # perform a synchronous bind
+            ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_ALLOW)
+            ldap_client.set_option(ldap.OPT_REFERRALS, 0)
+            ldap_client.simple_bind_s(email, password)
+            return True
+            
+        except ldap.INVALID_CREDENTIALS:
+            ldap_client.unbind()
+            return False
+            
+        except Exception as e:
+            print "LDAP Error: " + str(e)
+            return False
+            
 
 class Logout(BaseView):
 

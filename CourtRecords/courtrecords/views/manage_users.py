@@ -17,6 +17,38 @@ class ManageUsers(BaseView):
         self.set('users', Users.loadAll(order='id asc'))
         return self.response
         
+    def get_auth_type(self, id):
+        if id == Users.AUTH_LDAP:
+            return "LDAP"
+        return "Local"
+        
+class ManageUsersAdd(BaseView):
+
+    @view_config(route_name='manage_users_add', renderer='../themes/templates/admin/users_add.pt', permission=ACL.ADMINISTRATOR)
+    def manage_users_add(self):
+        self.set('err_message', '')
+        
+        if 'user.submit' in self.request.params:
+            email = Validators.sanatize(self.request.params.get('user.email',''))
+            group = self.request.params.get('user.group','')
+            password = Validators.sanatize(self.request.params.get('user.password',''))
+            auth_type = int(self.request.params.get('user.auth_type',Users.AUTH_LOCAL))
+            
+            if not Validators.email(email):
+                self.set('err_message', 'Invalid email')
+            
+            if not Validators.is_acl(group):
+                self.set('err_message', 'Invalid ACL Group')
+            
+            if not Validators.password(password, Config):
+                self.set('err_message', 'Invalid Password')
+                
+            user = Users(email=email, password=password, group=group, auth_type=auth_type)
+            user.insert(self.request)
+            
+            return HTTPFound(location=route_url('manage_users', self.request))
+        
+        return self.response
         
         
 class ManageUser(BaseView):
@@ -31,6 +63,9 @@ class ManageUser(BaseView):
             email = Validators.sanatize(self.request.params.get('user.email',''))
             group = self.request.params.get('user.group','')
             password = Validators.sanatize(self.request.params.get('user.password',''))
+            auth_type = int(self.request.params.get('user.auth_type',Users.AUTH_LOCAL))
+            
+            user.auth_type = auth_type
             
             if not Validators.email(email):
                 self.set('err_message', 'Invalid email')
@@ -42,16 +77,17 @@ class ManageUser(BaseView):
             else:
                 user.group = group
             
-            if password == '':
-                pass
-            elif not Validators.password(password, Config):
-                self.set('err_message', 'Invalid Password')
-            elif user.check_old_passwords(password):
-                self.set('err_message', 'Already used password')
-            else:
-                user.set_password(password)
-                user.update_password_timestamp()
-                
+            if auth_type == Users.AUTH_LOCAL:
+                if password == '':
+                    pass
+                elif not Validators.password(password, Config):
+                    self.set('err_message', 'Invalid Password')
+                elif user.check_old_passwords(password):
+                    self.set('err_message', 'Already used password')
+                else:
+                    user.set_password(password)
+                    user.update_password_timestamp()
+                    
             user.save(self.request)
             
         if 'user.unlock' in self.request.params:

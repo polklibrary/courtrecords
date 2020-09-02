@@ -47,6 +47,7 @@ def main(global_config, **settings):
     config.add_route('manage', '/manage')
     config.add_route('manage_theme', '/manage/theme')
     config.add_route('manage_users', '/manage/users')
+    config.add_route('manage_users_add', '/manage/users/add')
     config.add_route('manage_user', '/manage/users/{id}')
     config.add_route('manage_orders', '/manage/orders')
     config.add_route('manage_order', '/manage/orders/{id}')

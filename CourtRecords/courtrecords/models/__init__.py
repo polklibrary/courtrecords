@@ -24,7 +24,7 @@ class Model(object):
         transaction.commit()
 
     @protected([ACL.EDITOR,ACL.ADMINISTRATOR])
-    def remove(self):
+    def remove(self, request):
         DBSession.delete(self)
         transaction.commit()
         

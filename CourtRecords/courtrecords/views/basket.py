@@ -22,6 +22,7 @@ class Basket(BaseView):
         fee_price = 0.0
         fee_desc = ''
         
+        
         # SUCCESSFUL PAYMENT REDIRECTS HERE
         if self.request.params.get('transactionStatus','0') in ['1','5','6','8']:
             invoice = Invoices.load(order_number=self.request.params.get('orderNumber',''))
