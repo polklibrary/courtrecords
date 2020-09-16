@@ -35,7 +35,7 @@ class Validators(object):
 
     @classmethod
     def sanatize_textsafe(cls,text):
-        """ Remove all types of spaces """
+        """ Remove spec char types """
         return re.sub('[<>/+{}&@~`]','',text)
         
     @classmethod
@@ -60,6 +60,3 @@ class Validators(object):
         else:
             return bool(o)
 
-
-    re.search('\d+[A-Z]+', 'eest1234')
-    re.search('\d+', 'Dest1234')

@@ -12,7 +12,7 @@ from pyramid.view import view_config
 from sqlalchemy import or_,and_,func
 
 import time
-import urllib2, json, base64, urlparse, transaction
+import urllib2, json, base64, urlparse, transaction, re
 
 class Basket(BaseView):
 
@@ -137,19 +137,22 @@ class Basket(BaseView):
         return response
         
         
+    def sanatize_user_inputs(self, text):
+        return re.sub('[^a-zA-Z0-9., -]','',text)
+        
     def create_credit_passthrough(self):
         total_price = 0.0
         deliver_digitally = False
         deliver_physically = False
         divorces_only = False
 
-        fullname = self.request.params.get('customer.name','')
+        fullname = self.sanatize_user_inputs(self.request.params.get('customer.name',''))
         email = self.request.params.get('customer.email','')
-        address = self.request.params.get('customer.address','')
-        city = self.request.params.get('customer.city','')
-        state = self.request.params.get('customer.state','')
-        zip = self.request.params.get('customer.zip','')
-        phone = self.request.params.get('customer.phone','')
+        address = self.sanatize_user_inputs(self.request.params.get('customer.address',''))
+        city = self.sanatize_user_inputs(self.request.params.get('customer.city',''))
+        state = self.sanatize_user_inputs(self.request.params.get('customer.state',''))
+        zip = self.sanatize_user_inputs(self.request.params.get('customer.zip',''))
+        phone = self.sanatize_user_inputs(self.request.params.get('customer.phone',''))
         address2 = city + ', ' + state + ' ' + zip
 
         # Delivery Options
