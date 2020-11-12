@@ -1,5 +1,5 @@
 from courtrecords.utilities.utility import GenerateOrderNumber
-from courtrecords.models import Base,DBSession,Model,Entities,Cases,Roles,Counties,Containers,ActionTypes,Archives
+from courtrecords.models import Base,DBSession,Model,Entities,Cases,Roles,Counties,CallNumbers,Containers,ActionTypes,Archives
 from sqlalchemy import Column,Integer,BigInteger,String,Unicode,Boolean,TIMESTAMP,ForeignKey,Table,Text
 from sqlalchemy.orm import relationship, backref, relation
 from sqlalchemy import or_,and_,func
@@ -63,10 +63,11 @@ class Invoices(Base,Model):
         clauses = []
         results = []
         for record in records:
-            query = DBSession.query(Cases,Entities,Roles,Counties,ActionTypes,Archives,Containers) \
+            query = DBSession.query(Cases,Entities,Roles,Counties,ActionTypes,Archives,Containers,CallNumbers) \
                                                                         .filter(Cases.id==int(record['case'])) \
                                                                         .filter(Entities.case_id==Cases.id) \
                                                                         .filter(Entities.role==Roles.id) \
+                                                                        .filter(Cases.call_number==CallNumbers.id) \
                                                                         .filter(Cases.county==Counties.id) \
                                                                         .filter(Cases.archive==Archives.id) \
                                                                         .filter(Cases.container==Containers.id) \
