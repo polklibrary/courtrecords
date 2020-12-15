@@ -208,17 +208,6 @@ class Basket(BaseView):
             'amount':order_amount, 
             'orderNumber':order_number, 
             'orderName': fullname,
-            # 'userChoice1': '-'.join([str(r) for r in records]),
-            # 'userChoice2': self.request.params.get('customer.name',''),
-            # 'userChoice3': self.request.params.get('customer.phone',''),
-            # 'userChoice4': str(orderDeliveryDigital),
-            # 'userChoice5': str(orderDeliveryPhysical),
-            # 'userChoice6': str(orderDeliveryDivorceOnly),
-            # 'userChoice7': payment_hash,
-            # 'userChoice8': str(feeprice),
-            # 'userChoice9': 'blank',  # nothing
-            # 'userChoice10': 'blank',  # nothing
-            #'userChoice11': base64.encodestring(str(feedesc)).replace('\n',''),
             'email': email,
             'streetOne': address,
             'city': city,

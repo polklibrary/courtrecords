@@ -6,13 +6,25 @@ from pyramid.security import Allow, Authenticated, ALL_PERMISSIONS, Everyone, un
 
 import hashlib
 
-ORDERING = ['orderType','orderNumber','orderName','orderDescription','amount','orderFee','currentAmountDue','balance','currentBalance',
+ORDERING_OLD = ['orderType','orderNumber','orderName','orderDescription','amount','orderFee','currentAmountDue','balance','currentBalance',
 'dueDate','userChoice1','userChoice2','userChoice3','userChoice4','userChoice5','userChoice6','userChoice7','userChoice8','userChoice9',
 'userChoice10','userChoice11','userChoice12','userChoice13','userChoice14','userChoice15','userChoice16','userChoice17','userChoice18','userChoice19',
 'userChoice20','userChoice21','userChoice22','userChoice23','userChoice24','userChoice25','paymentMethod','streetOne','streetTwo','city','state','zip',
 'country','daytimePhone','eveningPhone','email','redirectUrl','redirectUrlParameters','retriesAllowed','contentEmbedded','timestamp',
 ]
     
+ORDERING = ['userId','fullName','email','orderType','orderNumber','orderName','orderDescription', 
+'amount','orderFee','amountDue','currentAmountDue','balance','currentBalance','dueDate',
+'userChoice1','userChoice2','userChoice3','userChoice4','userChoice5','userChoice6','userChoice7','userChoice8','userChoice9',
+'userChoice10','userChoice11','userChoice12','userChoice13','userChoice14','userChoice15','userChoice16','userChoice17','userChoice18','userChoice19',
+'userChoice20','userChoice21','userChoice22','userChoice23','userChoice24','userChoice25','userChoice26','userChoice27','userChoice28','userChoice29',
+'userChoice30','userChoice31','userChoice32','userChoice33','userChoice34','userChoice35',
+'paymentMethod','streetOne','streetTwo','city','state','zip','country',
+'daytimePhone','eveningPhone',
+'redirectUrl','redirectSuccessUrl','redirectFailureUrl','redirectCancelUrl','redirectUrlParameters','redirectTransactionUrlParameters',
+'retriesAllowed','includeTimestampParameter','redirectAbandonedSessionUrl','redirectAbandonedSessionUrlParameters',
+'contentEmbedded','module','timestamp','hashParameters',
+]
     
 def hash_transaction(**kwargs):
     return sha256(hash_ordering(**kwargs))
