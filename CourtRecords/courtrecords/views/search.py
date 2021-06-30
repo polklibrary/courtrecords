@@ -48,6 +48,11 @@ class Search(BaseView):
         self.set('counties', counties)
         self.set('counties_list', Counties.loadAll(order='county asc'))
         
+        #communities
+        communities = [ int(at) for at in self.request.params.getall('communities') ]
+        self.set('communities', communities)
+        self.set('communities_list', Communities.loadAll(order='community asc'))
+        
         #roles
         roles = [ int(r) for r in self.request.params.getall('roles') ]
         self.set('roles', roles)
