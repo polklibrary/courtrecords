@@ -16,9 +16,13 @@ requires = [
     'pyramid_tm==0.7',
     'pyramid_mailer==0.11',
     'repoze.sendmail==4.0',
-    'zope.sqlalchemy',
-    'waitress',
-    'requests',
+    'MarkupSafe==0.23',
+    'zope.sqlalchemy==0.7.5',
+    'waitress==0.8.9',
+    'requests==2.5.3',
+    'transaction==1.4.3',
+    'zope.deprecation==4.1.2',
+    'zope.interface==4.1.2',
     ]
 
 setup(name='CourtRecords',
