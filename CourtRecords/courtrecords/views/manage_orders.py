@@ -69,7 +69,7 @@ class ManageOrder(BaseView):
         
         
         self.set('is_divorce_case', False) 
-        if len(records) > 0 and 'case' in records[0] and records[0]['case'].ActionTypes:
+        if len(records) > 0 and 'case' in records[0] and records[0]['case'] and records[0]['case'].ActionTypes:
             self.set('is_divorce_case', records[0]['case'].ActionTypes.id == 17)  # hardcoded but eh... very unlikely to change
         
         self.set('records',records)
